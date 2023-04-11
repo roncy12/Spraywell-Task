@@ -1,0 +1,147 @@
+---
+product:
+    videos:
+        limit: {{theme_settings.productpage_videos_count}}
+    reviews:
+        limit: {{theme_settings.productpage_reviews_count}}
+    related_products:
+        limit: {{theme_settings.productpage_related_products_count}}
+    similar_by_views:
+        limit: {{theme_settings.productpage_similar_by_views_count}}
+---
+{{inject 'productId' product.id}}
+
+{{#partial "full-width-page"}}
+
+    {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+
+    {{#each product.shipping_messages}}
+        {{> components/common/alert/alert-info message}}
+    {{/each}}
+
+    <div itemscope itemtype="https://schema.org/Product">
+        <div class="product-view-wrap">
+            <div class="container">
+                {{> components/products/product-view schema=true  }}
+            </div>
+        </div>
+
+        <article class="productView-description-custom"{{#if schema}} itemprop="description"{{/if}}>
+            <div class="container">
+                {{> components/dh-custom/products/description-tabs}}
+            </div>
+            {{{region name="product_below_content"}}}
+        </article>
+
+        {{#all settings.show_product_reviews theme_settings.show_product_reviews (if theme_settings.show_product_details_tabs '!==' true)}}
+            {{> components/products/reviews reviews=product.reviews product=product urls=urls}}
+        {{/all}}
+
+        {{#if product.related_products}}
+            <div class="product-section related-product">
+                <div class="container">
+                    {{> components/dh-custom/products/related products=product.related_products}}
+                </div>
+            </div>
+        {{/if}}
+
+        <div class="stamped-review-section">
+            <div class="container">
+                <div class="stemped-io-main-review-block"></div>
+            </div>
+        </div>
+
+        {{#if product.similar_by_views}}
+            <div class="product-section customers-also-viewed-product">
+                <div class="container">
+                    {{> components/dh-custom/products/customers-also-viewed products=product.similar_by_views list="Customers Also Viewed"}}
+                </div>
+            </div>
+        {{/if}}
+        
+    </div>
+{{/partial}}
+{{> layout/base}}
+
+<script type="text/javascript"> 
+var _learnq = _learnq || []; 
+
+ var item = {
+   Name: "{{product.title}}", 
+   ProductID: "{{product.id}}",
+   ImageURL: "{{getImage product.main_image 'product_size' (cdn theme_settings.default_image_product)}}", 
+   URL: "{{product.url}}",
+   Brand: "{{product.brand.name}}", 
+   Price: "{{product.price.without_tax.value}}",
+   CompareAtPrice: "{{product.price.rrp_without_tax.value}}"
+  };
+
+_learnq.push(['track', 'Viewed Product', item]); 
+
+_learnq.push(['trackViewedItem', {
+   Title: item.Name, 
+   ItemId: item.ProductID,
+   ImageUrl: item.ImageURL, 
+   Url: item.URL,
+
+   Metadata: { 
+     Brand: item.Brand,
+     Price: item.Price, 
+     CompareAtPrice: item.CompareAtPrice
+ } 
+ }]);
+</script>
+
+<script text="text/javascript">
+	var _learnq = _learnq || [];
+	document.getElementById("form-action-addToCart").addEventListener('click',function (){
+ 		_learnq.push(['track', 'Added to Cart', item]);
+	});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    if(window.BCData.product_attributes.stock == null && window.BCData.product_attributes.instock == true && window.BCData.product_attributes.purchasing_message == null && $("[data-product-option-change]").children().length==0)
+    {
+        $("#product-level-section").hide();
+        $("#variant-section").hide();
+        $("#moreontheway").show();
+        $("#moreontheway .moreontheway-p").text("MORE ON THE WAY")
+        $(".productView-info-block.my-3").show();
+        $(".d-flex.shipping").show();
+    }
+    if($("[data-product-option-change]").children().length>0 && window.BCData.product_attributes.stock == null && window.BCData.product_attributes.purchasing_message != null && window.BCData.product_attributes.instock == true){
+        $("#variant-section").show();
+        $(".variantstock-status").text("IN STOCK");
+        $("#product-level-section").hide();
+        $("#moreontheway").hide();
+        $(".productView-info-block.my-3").hide();
+        $(".d-flex.shipping").hide();
+    }
+    if($("[data-product-option-change]").children().length>0 && window.BCData.product_attributes.stock == null && window.BCData.product_attributes.purchasing_message == null && window.BCData.product_attributes.instock == true){
+        $("#variant-section").show();
+        $(".variantstock-status").text("IN STOCK");
+        $("#product-level-section").hide();
+        $("#moreontheway").hide();
+        $(".productView-info-block.my-3").hide();
+        $(".d-flex.shipping").hide();
+    }
+
+    if(window.BCData.product_attributes.stock == 0 && window.BCData.product_attributes.instock == false){
+        $("#product-level-section").hide();
+        $("#variant-section").hide();
+        $("#moreontheway").show();
+        $("#moreontheway .moreontheway-p").text("MORE ON THE WAY")
+        $(".productView-details.product-options .alertBox.alertBox--error").hide();
+        $(".productView-info-block.my-3").show();
+        $(".d-flex.shipping").show();
+    }
+    if(window.BCData.product_attributes.stock == null && window.BCData.product_attributes.instock == false){
+        $("#product-level-section").hide();
+        $("#variant-section").hide();
+        $("#moreontheway").show();
+        $("#moreontheway .moreontheway-p").text("MORE ON THE WAY")
+        $(".productView-details.product-options .alertBox.alertBox--error").hide();
+        $(".productView-info-block.my-3").show();
+        $(".d-flex.shipping").show();
+    }
+</script>

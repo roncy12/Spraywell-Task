@@ -1,0 +1,348 @@
+<div class="productView" {{#if settings.data_tag_enabled}} data-event-type="product" data-entity-id="{{product.id}}" data-name="{{product.title}}" data-product-category="{{#each product.category}}{{#if @last}}{{this}}{{else}}{{this}}, {{/if}}{{/each}}" data-product-brand="{{product.brand.name}}" data-product-price="{{#if product.price.with_tax}}{{product.price.with_tax.value}}{{else}}{{product.price.without_tax.value}}{{/if}}" data-product-variant="single-product-option"{{/if}}>
+    {{#each product.reviews.messages}}
+            {{#if error}}
+                {{> components/common/alert/alert-error error}}
+            {{/if}}
+            {{#if success}}
+                {{> components/common/alert/alert-success success}}
+            {{/if}}
+        {{/each}}
+
+        <section class="productView-images" data-image-gallery>
+            <div class="productView-images-wrap">
+                {{!--
+                    Note that these image sizes are coupled to image sizes used in /assets/js/theme/common/product-details.js
+                    for variant/rule image replacement
+                --}}
+                <!-- {{#if product.images.length '>' 1 }}
+                {{!> components/carousel-content-announcement}}
+                {{/if}} -->
+                <figure class="productView-image" {{#if product.main_image}}
+                    data-zoom-image="{{getImage product.main_image 'zoom_size_product' (cdn theme_settings.default_image_product)}}" {{/if}}>
+                        <div class="productView-img-container slider-single {{#if (length product.images) '>' 1}}show-dots{{else}}hide-dots{{/if}}">
+                            {{#each product.images}}
+                            <div>
+                                <a data-fancybox="gallery" class="productView-image-block"
+                                    href="{{getImage this 'zoom_size_product' (cdn ../theme_settings.default_image_product)}}"
+                                    data-zoom-clone-image="{{stripQuerystring (getImage this 'zoom_size' (cdn ../theme_settings.default_image_product))}}">
+                                    <img class="productView-image--default lazyload" data-sizes="auto"
+                                        src="{{cdn 'img/loading.svg'}}"
+                                        data-src="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                                        alt="{{this.alt}}" title="{{this.alt}}" data-main-image>
+                                </a>
+                            </div>
+                            {{/each}}
+                    </div>
+                    <span class="zoom-icon"><i class="icon"><svg><use xlink:href="#icon-search"></use></svg></i></span>
+                </figure>
+                {{#if product.images.length '>' 1 }}
+                <ul class="productView-thumbnails slider-nav {{#if (length product.images) '>' 4}}show-scroll{{else}}image-center-no-slick{{/if}}">
+                    {{#each product.images}}
+                    <li class="productView-thumbnail">
+                        <a class="productView-thumbnail-link {{#if (stripQuerystring (getImage ../product.main_image 'product_size' (cdn ../theme_settings.default_image_product))) '==' (stripQuerystring (getImage this 'product_size' (cdn ../theme_settings.default_image_product))) }}is-active is-main{{/if}}"
+                            href="javascript:void(0)"
+                            data-image-gallery-new-image-url="{{getImage this 'product_size' (cdn ../theme_settings.default_image_product)}}"
+                            data-image-gallery-zoom-image-url="{{getImage this 'zoom_size' (cdn ../theme_settings.default_image_product)}}">
+                            <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}"
+                                data-src="{{getImage this 'productview_thumb_size' (cdn ../theme_settings.default_image_product)}}"
+                                alt="{{this.alt}}" title="{{this.alt}}">
+                        </a>
+                    </li>
+
+                    {{/each}}
+                </ul>
+                {{/if}}
+            </div>
+        </section>
+
+        <section class="productView-details product-data">
+            <div class="productView-product">
+                {{#if product.brand}}
+                    <h2 class="productView-brand"{{#if schema}} itemprop="brand" itemscope itemtype="https://schema.org/Brand"{{/if}}>
+                        <a href="{{product.brand.url}}"{{#if schema}} itemprop="url"{{/if}}><span{{#if schema}} itemprop="name"{{/if}} data-hover="{{product.brand.name}}">{{product.brand.name}}</span></a>
+                    </h2>
+                {{/if}}
+                <h1 class="productView-title" {{#if schema}}itemprop="name"{{/if}}>{{product.title}}</h1>
+
+                <div class="price-block-wrap">
+                    <div class="left-block">
+                        {{#if product.call_for_price}}
+                            <p class="productView-price">
+                                <span>{{product.call_for_price}}</span>
+                            </p>
+                        {{/if}}
+                        <div class="productView-price">
+                            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                                {{> components/products/price price=product.price schema_org=schema}}
+                            {{else}}
+                                {{> components/common/login-for-pricing}}
+                            {{/or}}
+                        </div>
+                        {{{region name="product_below_price"}}}
+                    </div>
+                    <div class="right-block">
+                        <span class="stamped-product-reviews-badge" data-id="{{product.id}}" data-product-sku="{{product.sku}}" style="display:block;"></span>
+                    </div>
+
+                </div>
+                <div style="display: none;" class="productView-rating"{{#if product.num_reviews '>' 0}}{{#if schema}} itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating"{{/if}}{{/if}}>
+                    {{#if settings.show_product_rating}}
+                        {{#if product.num_reviews '>' 0}}
+                            {{#if schema}}
+                                <meta itemprop="ratingValue" content="{{product.rating}}">
+                                <meta itemprop="ratingCount" content="{{product.num_reviews}}">
+                                <meta itemprop="reviewCount" content="{{product.num_reviews}}">
+                            {{/if}}
+                        {{/if}}
+                            {{> components/products/ratings rating=product.rating}}
+                        {{#if product.num_reviews '>' 0}}
+                            <a href="{{product.url}}#product-reviews" id="productReview_link">
+                                {{lang 'products.reviews.link_to_review' total=product.num_reviews}}
+                            </a>
+                        {{else}}
+                            <span>{{lang 'products.reviews.link_to_review' total=product.num_reviews}}</span>
+                        {{/if}}
+                    {{/if}}
+                    {{#if settings.show_product_reviews}}
+                        <a href="{{product.url}}{{#if is_ajax}}#write_review{{/if}}"
+                           class="productView-reviewLink productView-reviewLink--new"
+                           {{#unless is_ajax}}data-reveal-id="modal-review-form"{{/unless}}
+                           role="button"
+                        >
+                           {{lang 'products.reviews.new'}}
+                        </a>
+                        {{> components/products/modals/writeReview}}
+                    {{/if}}
+                </div>
+                {{product.detail_messages}}
+                <dl class="productView-info">
+                    {{#if product.stock_level}}
+                        <div class="product-level-section d-flex" id="product-level-section">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <p>IN STOCK</p>
+                        </div>
+                        
+                        <script type="text/javascript" charset="utf-8">
+                            var list;
+                            list = document.querySelectorAll(".productView-info-block.my-3");
+                            for (var i = 0; i < list.length; ++i) {
+                               list[i].classList.add('d-none');
+                            }
+                            
+                        </script>
+ 
+                        
+                      {{else}}
+    
+                        {{#unless product.stock_level}}
+                        <div class="variant-section d-flex" id="variant-section">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <p class="variantstock-status"></p>
+                        </div>
+                        {{/unless}}
+    
+                        <div class="moreontheway d-flex" id="moreontheway">
+                            <i class="fa-solid fa-clock"></i>
+                            <p class="moreontheway-p"></p>
+                        </div>
+    
+                      {{/if}}
+    
+                     
+                    {{#each product.custom_fields}}
+                        {{#if name "==" "Ships Factory-Direct" }}
+                            <div class="d-flex shipping" style="display: none;">
+                                <i class="fa-solid fa-truck"></i>
+                                <p>SHIPS FACTORY-DIRECT</p>
+                            </div>
+                            <div class="productView-info-block my-3" style="display: none;">
+                              <dt class="productView-info-value"><i class="fa-solid fa-phone"></i><span class="font-weight-normal mx-2">Call for Estimated Ship Date</span></dt>
+                              <dd class="productView-info-name">561-964-3228</dd>
+                            </div>    
+                        {{/if}}
+                    {{/each}}
+                    {{#if product.sku}}
+                    <div class="productView-info-block prod-sku">
+                        <dt class="productView-info-name sku-label"{{#unless product.sku}} style="display: none;"{{/unless}}>{{lang 'products.sku'}}</dt>
+                        <dd class="productView-info-value" data-product-sku{{#if schema}} itemprop="sku"{{/if}}>{{product.sku}}</dd>
+                    </div>
+                    {{/if}}
+                    {{#if product.upc}}
+                    <div class="productView-info-block product-upc">
+                        <dt class="productView-info-name upc-label"{{#unless product.upc}} style="display: none;"{{/unless}}>{{lang 'products.upc'}}</dt>
+                        <dd class="productView-info-value" data-product-upc>{{product.upc}}</dd>
+                    </div>
+                    {{/if}}
+                    {{#if schema}}
+                        {{#if product.mpn}}<meta itemprop="mpn" content="{{product.mpn}}" />{{/if}}
+                        {{#if product.gtin}}<meta itemprop="gtin" content="{{product.gtin}}" />{{/if}}
+                    {{/if}}
+                    {{#if product.condition}}
+                        <div class="productView-info-block">
+                            <dt class="productView-info-name">{{lang 'products.condition'}}</dt>
+                            <dd class="productView-info-value">{{product.condition}}</dd>
+                        </div>
+                    {{/if}}
+                    {{#if product.availability}}
+                    <div class="productView-info-block">
+                        <dt class="productView-info-name">{{lang 'products.availability'}}</dt>
+                        <dd class="productView-info-value">{{product.availability}}</dd>
+                    </div>
+                    {{/if}}
+                    {{#all product.weight theme_settings.show_product_weight}}
+                    <div class="productView-info-block">
+                        <dt class="productView-info-name">{{lang 'products.weight'}}</dt>
+                        <dd class="productView-info-value" data-product-weight>{{product.weight}}</dd>
+                    </div>
+                    {{/all}}
+                    {{#all product.width product.height product.depth theme_settings.show_product_dimensions}}
+                    <div class="productView-info-block">
+                        <dt class="productView-info-name">{{lang 'products.width'}}</dt>
+                        <dd class="productView-info-value" data-product-width>
+                            {{product.width}}
+                            {{#if settings.measurements.length '==' 'Centimeters'}}
+                            ({{lang 'products.measurement.metric'}})
+                            {{else}}
+                            ({{lang 'products.measurement.imperial'}})
+                            {{/if}}
+                        </dd>
+                    </div>
+                    <div class="productView-info-block">
+                        <dt class="productView-info-name">{{lang 'products.height'}}</dt>
+                        <dd class="productView-info-value" data-product-height>
+                            {{product.height}}
+                            {{#if settings.measurements.length '==' 'Centimeters'}}
+                            ({{lang 'products.measurement.metric'}})
+                            {{else}}
+                            ({{lang 'products.measurement.imperial'}})
+                            {{/if}}
+                        </dd>
+                    </div>
+                    <div class="productView-info-block">
+                        <dt class="productView-info-name">{{lang 'products.depth'}}</dt>
+                        <dd class="productView-info-value" data-product-depth>
+                            {{product.depth}}
+                            {{#if settings.measurements.length '==' 'Centimeters'}}
+                            ({{lang 'products.measurement.metric'}})
+                            {{else}}
+                            ({{lang 'products.measurement.imperial'}})
+                            {{/if}}
+                        </dd>
+                    </div>
+                    {{/all}}
+                    {{#if product.min_purchase_quantity}}
+                    <div class="productView-info-block">
+                        <dt class="productView-info-name">{{lang 'products.min_purchase_quantity'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.min_purchase_quantity}}</dd>
+                    </div>
+                    {{/if}}
+                    {{#if product.max_purchase_quantity}}
+                    <div class="productView-info-block">
+                        <dt class="productView-info-name">{{lang 'products.max_purchase_quantity'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.purchase_units' quantity=product.max_purchase_quantity}}</dd>
+                    </div>
+                    {{/if}}
+                    {{#if product.gift_wrapping_available}}
+                    <div class="productView-info-block">
+                        <dt class="productView-info-name">{{lang 'products.gift_wrapping'}}</dt>
+                        <dd class="productView-info-value">{{lang 'products.gift_wrapping_available'}}</dd>
+                    </div>
+                    {{/if}}
+                    {{#if product.shipping}}
+                        {{#if product.shipping.calculated}}
+                        <div class="productView-info-block">
+                            <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                            <dd class="productView-info-value">{{lang 'products.shipping_calculated'}}</dd>
+                        </div>
+                        {{else}}
+                            {{#if product.shipping.price.value '===' 0}}
+                            <div class="productView-info-block">
+                                <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                <dd class="productView-info-value">{{lang 'products.shipping_free'}}</dd>
+                            </div>
+                            {{else}}
+                            <div class="productView-info-block">
+                                <dt class="productView-info-name">{{lang 'products.shipping'}}</dt>
+                                <dd class="productView-info-value">{{lang 'products.shipping_fixed' amount=product.shipping.price.formatted}}</dd>
+                            </div>
+                            {{/if}}
+                        {{/if}}
+                    {{/if}}
+                    {{#if theme_settings.show_custom_fields_tabs '!==' true}}
+                        {{#each product.custom_fields}}
+                        {{#if (toLowerCase name) '==' 'product bullets'}}
+                            <div class="productView-info-block products-custom-fields">
+                                <dd class="productView-info-value">{{{value}}}</dd>
+                            </div>
+                        {{/if}}
+                        {{/each}}
+                    {{/if}}
+
+                    {{#if settings.bulk_discount_enabled}}
+                        <div class="productView-info-bulkPricing">
+                            {{> components/products/bulk-discount-rates bulk_discount_rates=product.bulk_discount_rates}}
+                        </div>
+                    {{/if}}
+
+
+                </dl>
+            </div>
+        </section>
+
+        <section class="productView-details product-options">
+            <div class="productView-options">
+                {{#if product.release_date }}
+                    <p>{{product.release_date}}</p>
+                {{/if}}
+                <form class="form" method="post" action="{{product.cart_url}}" enctype="multipart/form-data"
+                      data-cart-item-add>
+                    <input type="hidden" name="action" value="add">
+                    <input type="hidden" name="product_id" value="{{product.id}}"/>
+                    <div data-product-option-change style="display:none;">
+                        {{inject 'showSwatchNames' theme_settings.show_product_swatch_names}}
+                        {{#each product.options}}
+                            {{{dynamicComponent 'components/products/options'}}}
+                        {{/each}}
+                    </div>
+                    <div class="form-field form-field--stock{{#unless product.stock_level}} u-hiddenVisually{{/unless}}">
+                        <label class="form-label form-label--alternate">
+                            {{lang 'products.current_stock'}}
+                            <span data-product-stock>{{product.stock_level}}</span>
+                        </label>
+                    </div>
+                    {{!> components/products/add-to-cart}}
+                    {{#if product.out_of_stock}}
+                        {{#if product.out_of_stock_message}}
+                            {{> components/common/alert/alert-error product.out_of_stock_message}}
+                        {{else}}
+                            {{> components/common/alert/alert-error (lang 'products.sold_out')}}
+                        {{/if}}
+                    {{/if}}
+
+                    <div class="product-card-btn">
+                        {{> components/products/add-to-cart}}
+                    </div>
+
+                </form>
+                {{#if settings.show_wishlist}}
+                    {{> components/dh-custom/common/wishlist-dropdown}}
+                {{/if}}
+
+                <!-- <div class="affirm-block">
+                    <div class="left-block">
+                        <span>Starting at $30/mo with</span> <span> <img src="/product_images/uploaded_images/affirm-logo-pdp.png" alt=""></span>
+                    </div>
+                    <div class="right-block">
+                        <a href="/financing/" data-hover="Prequalify Now">Prequalify Now</a>
+                    </div>
+                </div> -->
+            </div>
+            {{!> components/common/share url=product.url}}
+        </section>
+    </div>
+
+    <div id="previewModal" class="modal modal--large" data-reveal>
+        {{> components/common/modal/modal-close-btn }}
+        <div class="modal-content"></div>
+        <div class="loadingOverlay"></div>
+    </div>

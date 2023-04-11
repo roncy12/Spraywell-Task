@@ -1,0 +1,81 @@
+---
+category:
+    shop_by_price: true
+    products:
+        limit: {{theme_settings.categorypage_products_per_page}}
+---
+{{inject "categoryProductsPerPage" theme_settings.categorypage_products_per_page}}
+{{inject "categoryId" category.id}}
+{{#partial "head"}}
+    {{#if pagination.category.previous}}
+        <link rel="prev" href="{{pagination.category.previous}}">
+    {{/if}}
+    {{#if pagination.category.next}}
+        <link rel="next" href="{{pagination.category.next}}">
+    {{/if}}
+{{/partial}}
+
+{{#partial "full-width-page"}}
+<div class="category-heading-block">
+    <div class="block-wrap">
+        <div class="left-block {{#if category.image}}{{else}}full-width{{/if}}">
+            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+            {{#if category.name}}
+            {{#unless theme_settings.hide_category_page_heading }}
+                <h1 class="page-heading">{{category.name}}</h1>
+                <!-- {{{region name="category_below_header"}}} -->
+            {{/unless}}
+            {{else}}
+            <h1 class="page-heading">Categories</h1>
+            {{/if}}
+            {{#if category.description}}
+                <div class="category-description">
+                    {{{category.description}}}
+                </div>
+            {{/if}}            
+        </div>
+        {{#if category.image}}
+        <div class="right-block">
+            {{#if category.image}}
+                {{> components/common/responsive-img
+                    image=category.image
+                    fallback_size=theme_settings.zoom_size
+                    lazyload=theme_settings.lazyload_mode
+                    class="category-header-image"
+                }}
+            {{/if}}
+        </div>
+        {{/if}}
+    </div>
+</div>
+
+{{#if banners.top}}
+<div class="banners" data-banner-location="top">
+    {{#each (limit banners.top_metadata 1)}}
+    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+        <div data-event-type="promotion-click">
+                {{{this.content}}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+
+{{> components/dh-custom/category/sub-category-block}}
+
+<div class="product-list-wrap">
+    <div class="container">
+        <div class="page">
+            <aside class="page-sidebar">
+                <div id="searchspring-sidebar"></div>
+            </aside>
+    
+            <div class="page-content" id="product-listing-container">
+                <div id="searchspring-content"></div>
+                {{{region name="category_below_content"}}}
+            </div>
+        </div>
+    </div>
+</div>
+{{/partial}}
+{{> layout/base}}

@@ -1,0 +1,9 @@
+<main class="body {{#if template '==' 'pages/custom/page/soft-wash-system'}}soft-wash-system-page{{/if}}" id="main-content" role="main" data-currency-code="{{currency_selector.active_currency_code}}">
+    {{#block "hero"}} {{/block}}
+    {{#block "full-width-page"}} {{/block}}
+    <div class="container">
+        {{#block "page"}} {{/block}}
+    </div>
+    {{> components/common/modal/modal}}
+    {{> components/common/alert/alert-modal}}
+</main>

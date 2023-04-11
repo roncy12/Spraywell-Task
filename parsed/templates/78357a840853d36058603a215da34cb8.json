@@ -1,0 +1,1 @@
+{"components/blog/home-page-post":"<li data-blog-title=\"{{title}}\">\r\n    <a href=\"{{url}}\" class=\"home-blog-title\">{{title}} \r\n        <i class=\"icon\"><svg><use xlink:href=\"#icon-arrow-right\"></use></svg></i>\r\n    </a>\r\n</li>\r\n    \r\n      \r\n  \r\n"}

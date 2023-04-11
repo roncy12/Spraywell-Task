@@ -1,0 +1,380 @@
+.card{
+    border: 1px solid #F2F2F2; background-color: $white-color; @include border-radius(10px); margin-bottom: 0px;
+    @include display-flex(flex); @include flex-wrap(wrap);     transition: box-shadow .3s;
+    &:hover{
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1); transition: box-shadow .3s ease-in-out;
+        @media screen and (max-width: 767px) {
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+        .card-img-container{
+            img{
+                opacity: 0.5;
+            }
+        }
+        .card-figcaption{
+            opacity: 1;
+        }
+    }
+    &.show-badges{
+        .price--withoutTax{
+            color: $theme-secondary-color;
+        }
+    }
+}
+
+.card-figure{
+    padding: 47px; width: 100%; @include border-radius(10px);
+    @media screen and (min-width: 1280px) {
+        padding: get-vw(94px);
+    }
+    @media screen and (max-width: 1279px) {
+        padding: 20px;
+    }
+    @media screen and (max-width: 767px) {
+        padding: 26px;
+    }
+    .sale-flag-side{
+        width: 45px; height: 20px; @include border-radius(100px); top: 16px; left: 17px;
+        @include display-flex(flex); @include align-item(center); @include justify-content(center); padding: 5px;
+        font-weight: bold; font-size: 9px; line-height: 16px;
+        @media screen and (min-width: 1280px) {
+            width: get-vw(90px); height: get-vw(40px); font-size: get-vw(18px); line-height: get-vw(32px);
+            top: get-vw(32px); left: get-vw(34px);padding: get-vw(10px);
+        }
+        span{
+            line-height: 20px;
+            position: relative;
+            @media screen and (min-width: 1280px) {
+                line-height: get-vw(40px);
+            }
+        }
+    }
+    .card-img-container{
+        max-width: 278px;
+        @media screen and (min-width: 1280px) {
+            max-width: get-vw(556px);
+        }
+        @media screen and (max-width: 1023px) {
+            max-width: 150px;
+        }
+    }
+}
+.card-body{
+    padding: 0 14px 24px 14px; text-align: center; width: 100%;
+    @include display-flex(flex); @include justify-content(center); @include align-item(flex-end); @include flex-wrap(wrap);
+    @media screen and (min-width: 1280px) {
+        padding: 0 get-vw(28px) get-vw(48px) get-vw(28px);
+    }
+    @media screen and (max-width: 1023px) {
+        padding: 0 17px 21px 17px;
+    }
+
+    .stamped-product-wrap{
+        min-height: 15px; margin-bottom: 11px;
+        @media screen and (min-width: 1280px) {
+            margin-bottom: get-vw(22px); min-height: get-vw(30px);
+        }
+        @media screen and (max-width: 767px) {
+            margin-bottom: 8px;
+        }
+        .stamped-badge[data-rating="0"], .stamped-badge[data-rating="0,0"], .stamped-badge[data-rating="0.0"]{
+            @include display-flex(flex !important);
+            .stamped-badge-caption{
+                display: none !important;
+            }
+        }
+    }
+    .stamped-badge{
+        @include display-flex(flex !important);
+
+        .stamped-starrating{
+            @include display-flex(flex); @include align-item(center);  color: $theme-primary-color; margin: 0px !important;
+        }
+        .stamped-fa{
+            width: 15px; height: 15px; @include display-flex(flex); @include align-item(center); @include justify-content(center);
+            color: $theme-primary-color;
+            @media screen and (min-width: 1280px) {
+                width: get-vw(30px); height: get-vw(30px);
+            }
+            &:before{
+                width: 13px; height: 13px; font-size: 14px; margin: 0px; line-height: 13px;
+                @media screen and (min-width: 1280px) {
+                    width: get-vw(26px); height: get-vw(26px); font-size: get-vw(28px); line-height: get-vw(26px);
+                }
+            }
+            + .stamped-fa{
+                margin-left: 2px;
+                @media screen and (min-width: 1280px) {
+                    margin-left: get-vw(4px);
+                }
+            }
+        }
+        .stamped-badge-caption{
+            font-weight: normal; font-size: 10px; line-height: 16px; margin-left: 4px !important;  color: $heading-color; font-family: $review-font;
+            margin-top: 1px;
+            @media screen and (min-width: 1280px) {
+                font-size: get-vw(20px); line-height: get-vw(30px); margin-left: get-vw(8px) !important;
+            }
+        }
+        .stamped-badge-caption{
+            &::before{
+                content: "(";
+            }
+            &::after{
+                content: ")";
+            }
+        }
+        .stamped-badge-caption[data-reviews][data-label][data-version="0"], .stamped-badge-caption[data-reviews][data-label][data-version="1"], .stamped-badge-caption[data-reviews][data-label][data-version="2"], .stamped-badge-caption[data-reviews][data-label][data-version="3"], .stamped-badge-caption[data-reviews][data-label][data-version="4"], .stamped-badge-caption[data-reviews][data-label][data-version="5"]{
+            > span{
+                display: none !important;
+            }
+            &::after{
+                content: ")" !important;
+            }
+        }
+    }
+    .brand-name{
+        font-weight: 600; font-size: 11px; line-height: 16px; letter-spacing: 0.03em; text-transform: uppercase; color: $theme-primary-color; margin-bottom: 7px;
+        width: 100%;
+        @media screen and (min-width: 1280px) {
+            font-size: get-vw(22px); line-height: get-vw(32px); margin-bottom: get-vw(14px);
+        }
+        @media screen and (max-width: 767px) {
+            margin-bottom: 2px;
+        }
+    }
+    .price{
+        color: $theme-primary-color; font-weight: bold; font-size: 14px; line-height: 21px;
+        @media screen and (min-width: 1280px) {
+            font-size: get-vw(28px); line-height: get-vw(42px);
+        }
+        &.price--non-sale, &.price--rrp{
+            font-weight: normal;
+            // margin-right: 5px;
+        }
+    }
+    .card-text{
+        width: 100%;
+    }
+    .card-price-block{
+        @include display-flex(flex); margin-bottom: 0px; @include justify-content(center);
+        .price--rrp{
+            font-weight: 400;
+        }
+        .price-section{
+            + .price-section{
+                margin-left: 4px;
+                @media screen and (min-width: 1280px) {
+                    margin-left: get-vw(8px);
+                }
+            }
+        }
+    }
+}
+.compare-btn{
+    width: 100%; margin-top: 14px; padding: 0px; cursor: pointer;
+    font-weight: 500; font-size: 10px; line-height: 15px; color: $heading-color; @include display-flex(flex); @include align-item(center);
+    @include justify-content(center);
+    @media screen and (min-width: 1280px) {
+        font-size: get-vw(20px); line-height: get-vw(30px); margin-top: get-vw(28px);
+    }
+    @media screen and (max-width: 1023px) {
+        display: none;
+    }
+    input{
+        opacity: 0; z-index: -1;
+    }
+    span{
+        padding-left: 19px; position: relative;
+        @media screen and (min-width: 1280px) {
+            padding-left: get-vw(38px);
+        }
+        &:before{
+            width: 13px; height: 13px; @include border-radius(50%); border: 1px solid $border-color;
+            content: ""; position: absolute; left: 0; top: 1px;
+            @media screen and (min-width: 1280px) {
+                width: get-vw(26px); height: get-vw(26px); top: get-vw(2px);
+            }
+        }
+        &:after{
+            background-color: $white-color; width: 7px; height: 7px; @include border-radius(50%); left: 3px;
+            content: ""; position: absolute; top: 4px;
+            @media screen and (min-width: 1280px) {
+                width: get-vw(14px); height: get-vw(14px); left: get-vw(6px); top: get-vw(8px);
+            }
+        }
+    }
+    .styled-checkbox:checked+span:after{
+        background: $theme-secondary-color;
+    }
+    &:hover{
+        color: $theme-secondary-color;
+    }
+}
+.card-title{
+    font-weight: 500; font-size: 14px; line-height: 18px; margin-bottom: 7px; width: 100%;
+    @media screen and (min-width: 1280px) {
+        font-size: get-vw(28px); line-height: get-vw(36px); margin-bottom: get-vw(14px);
+    }
+    @media screen and (max-width: 767px) {
+        margin-bottom: 1px;
+    }
+    > a{
+        color: $heading-color; font-weight: 500;
+    }
+    &:hover{
+        > a{
+            color: $heading-color;
+        }
+    }
+}
+
+.card-figcaption-button{
+    width: 180px; font-weight: 700;
+    @media screen and (min-width: 1280px) {
+        width: get-vw(360px);
+    }
+    + .card-figcaption-button{
+        margin-top: 9px;
+        @media screen and (min-width: 1280px) {
+            margin-top: get-vw(18px);
+        }
+    }
+    &.button--small{
+        padding-left: 20px; padding-right: 20px;
+    }
+    &.compare-btn{
+        font-weight: 500;
+    }
+}
+.card-wishlist{
+    position: absolute; top: 20px; right: 18px;
+    @media screen and (min-width: 1280px) {
+        top: get-vw(40px); right: get-vw(36px);
+    }
+    @media screen and (max-width: 767px) {
+        top: 13px; right: 13px;
+    }
+    a{
+        @include display-flex(flex);
+        &:hover{
+            .hover{
+                display: block;
+            }
+            .out{
+                display: none;
+            }
+        }
+    }
+    .hover{
+        display: none;
+        svg{
+            fill: $theme-secondary-color;
+        }
+    }
+    .icon{
+        width: 15px; height: 14px;
+        @media screen and (min-width: 1280px) {
+            width: get-vw(30px); height: get-vw(28px);
+        }
+    }
+    svg{
+        fill: #BDBDBD;
+    }
+}
+
+
+
+.slick-track{
+    @include display-flex(flex); margin-left: 0px; margin-right: 0px;
+    &:before, &:after{
+        display: none;
+    }
+}
+.productCarousel{
+    margin: 0 -11px;
+    @media screen and (min-width: 1280px) {
+        margin: 0 get-vw(-22px);
+    }
+}
+.productCarousel-slide{
+    padding-left: 11px; padding-right: 11px; height: auto;
+    @media screen and (min-width: 1280px) {
+        padding-left: get-vw(22px); padding-right: get-vw(22px);
+    }
+    .card{
+        height: 100%;
+    }
+}
+.card-addtocart-button {
+    &.loading {
+        &:hover .loading-indicator,
+        &:focus .loading-indicator {
+            svg * {
+                stroke: #fff;
+            }
+        }
+        .loading-indicator {
+            display: inline-block;
+            margin-left: 3px;
+            vertical-align: bottom;
+        }
+
+        .loading-indicator,
+        .loading-indicator svg {
+            width: 14px;
+            height: 14px;
+        }
+        .loading-indicator svg {
+            * {
+                stroke-width: 15;
+                stroke: #0A2986;
+            }
+        }
+    }
+
+    .loading-indicator {
+        display: none;
+    }
+}
+
+// Custom template styles
+.no-searchspring {
+    .card {            
+        .card-figcaption {
+            display: block;
+            height: auto;
+            margin: 5px 0 0;
+            opacity: 1;
+            position: relative;
+
+            .card-img-container {
+                img {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+
+    .card:hover {
+        .card-img-container img {
+            opacity: 1;
+            transition: transform .2s;
+            transform: scale(1.1);
+        }
+    }
+
+    .card-body {
+        @include align-item(normal);
+        padding: 0 14px 24px 14px; 
+    }
+
+    .card-figcaption-button {
+        font-weight: 700;
+        width: 130px;
+        @media screen and (min-width: 767px) {
+            width: 180px;
+        }
+    }
+
+}

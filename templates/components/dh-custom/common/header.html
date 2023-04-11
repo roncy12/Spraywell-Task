@@ -1,0 +1,63 @@
+<!-- {{#if banners.top}}
+<div class="banners" data-banner-location="top">
+    {{#each (limit banners.top_metadata 1)}}
+    <div class="banner" data-event-type="promotion" data-entity-id="{{this.id}}" data-name="{{this.banner-name}}" data-position="{{this.location}}" data-banner-id="{{this.banner-name}}">
+        <div data-event-type="promotion-click">
+            {{{this.content}}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}} -->
+
+<header class="header" sticky="true" role="banner">
+
+    <div class="header-top-section">
+        <div class="container-1360">
+            <div class="custom-row d-flex">
+                <div class="column">
+                   <p>Call Us: <strong> <a href="tel:{{lang 'footer.call_us' phone_number=settings.phone_number}}" data-hover="{{lang 'footer.call_us' phone_number=settings.phone_number}}">{{lang 'footer.call_us' phone_number=settings.phone_number}}</a></strong></p>
+                </div>
+                <div class="column shipping-text">
+                    {{{region name="header_bottom--global"}}}
+                </div>
+                <div class="column">
+                    <p><a data-hover="expert tips & resources" href="/blog">Expert Tips & Resources</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-middle-section">
+        <div class="container-1360">
+            <div class="custom-row d-flex">
+                <div class="column logo-block">
+                    <div class="header-logo-image-custom">
+                        {{#if page_type '==' 'default'}}
+                            <h1 class="tag-none">Spraywell</h1>
+                        {{/if}}
+                          <a href="{{urls.home}}">
+                            <img class="header-logo-image-custom" src="/product_images/uploaded_images/main-logo.png" alt="{{settings.store_logo.title}}" title="{{settings.store_logo.title}}">
+                          </a>
+                    </div>
+                </div>
+                <div class="column search-block-desktop">
+                    <div class="dropdown-custom dropdown--quickSearch-custom" id="quickSearch" aria-hidden="true" data-prevent-quick-search-close>
+                        {{> components/common/quick-search name='nav-quick-search'}}
+                    </div>
+                </div>
+                <div class="column navigation-item">
+                    {{> components/dh-custom/common/navigation}}
+                </div>
+
+                <div class="column menu-nevigation">
+                    {{> components/dh-custom/common/navigation-menu}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{> components/dh-custom/common/cart-sliding-block}}
+
+    {{> components/dh-custom/common/mobile-menu}}
+</header>

@@ -1,0 +1,605 @@
+.navBar--sub.navBar--account .navBar-item{
+    margin: 0 10px;
+    @media screen and (min-width:768px) {
+        display: inline-block;
+    }
+    @media screen and (min-width:1280px) {
+      margin: 0 get-vw(20px);
+    }
+    @media screen and (max-width:1023px) {
+        margin: 0 4px;
+        .navBar-action{
+          font-size: 14px;
+        }
+    }
+    @media screen and (max-width:767px) {
+      margin: 5px 0;
+    }
+    .button{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+
+// ------------------------  Navbar Section Style ------------------------
+.navBar-section{
+  .navBar-item{
+    margin-bottom: 10px;
+    @media screen and (min-width:1280px) {
+      margin-bottom: get-vw(20px);
+    }
+      .navBar-action{
+        font-size: 15px;
+        color: $heading-color;
+        @media screen and (min-width:1280px) {
+          font-size: get-vw(30px);
+        }
+      }
+      &.is-active{
+          border-color: $theme-primary-color;
+          .navBar-action{
+            color:$theme-primary-color;
+          }
+      }
+   }
+}
+.type-editaccount,
+.type-shippingaddressform{
+      .account{
+          .form{
+              max-width: 1000px;
+              @media screen and (min-width:1280px) {
+                max-width:get-vw(2000px);
+              }
+          }
+      }
+}
+// ------------------------  Account Body Common Style ------------------------ //
+.account-body{
+    margin: 0;
+    .account-list{
+      .account-product-body{
+        .account-product-title{
+          line-height: normal;
+          a{
+            font-weight: bold;
+          }
+          &:hover{
+              a{
+                color: $link-hover-color;
+              }
+          }
+        }
+        .account-product-detail-heading{
+          color:$heading-color;
+          margin-bottom: 0;
+          + span{
+              font-size: 14px;
+              @media screen and (min-width:1280px) {
+                  font-size: get-vw(28px);
+              }
+          }
+        }
+      }
+    .account-product{
+      .account-product-checkItem{
+        left: 0;
+        .form-label{
+          outline: none !important;
+          &:before{
+            border-radius: 0;
+          }
+        }
+      }
+      .account-product-figure{
+        @media screen and (min-width:1280px) {
+          width: get-vw(140px);
+        }
+        left: 0;
+        &:after{display: none;}
+      }
+      .account-product-body{
+        padding-left: 20px;
+        @media screen and (min-width:1280px) {
+          padding-left: get-vw(40px);
+        }
+      }
+    }
+  }
+  .account-orderTotal{
+    .account-orderTotal-key{
+      color:$heading-color;
+    }
+  }
+  .account-content--fixedSmall{
+    width: 60%;
+  }
+  .account-product-detail-heading{
+    font-size: 14px;
+    @media screen and (min-width:1280px) {
+      font-size:get-vw(28px);
+    }
+  }
+}
+
+.account-content{
+  h2{
+    font-size: 24px;
+    @media screen and (min-width:1280px) {
+      font-size: get-vw(48px);
+    }
+  }
+}
+
+// ------------------------  Account Inner STyle ------------------------
+.account{
+      width: 100%;
+      max-width: 100%;
+      @media screen and (max-width:1023px) {
+          margin-bottom: 0;
+      }
+  .form{
+    margin: 0 auto;
+    margin-bottom:20px;
+    @media screen and (min-width:1280px) {
+      margin-bottom: get-vw(40px);
+    }
+  }
+}
+
+// ------------------------  Account Form Action Style ------------------------ //
+.account{
+  .form-actions{
+    position: inherit;
+    .button{
+      margin-bottom: 0;
+      @media only screen and (max-width:567px) {
+        width: 100%;
+      }
+      @media only screen and (max-width:567px) {
+        &+.button{
+          margin-top:10px;
+          margin-left: 0px;
+        }
+        +input{
+          &+.button{
+            margin-top:10px;
+            margin-left: 0px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ------------------------  Type Account Order Style ------------------------ //
+.type-account_orderstatus{
+  .account{
+    .pagination{
+      margin-bottom:20px;
+      @media screen and (min-width:1280px) {
+        margin-bottom: get-vw(40px);
+      }
+      @media screen and (max-width:1023px) {
+          margin-bottom: 0px;
+      }
+      @media screen and (max-width:767px) {
+        margin-top:34px;
+      }
+      .pagination-list{
+          margin-bottom: 0px;
+      }
+      .pagination-list .pagination-item{
+        @media screen and (max-width:1023px) {
+            display: block;
+        }
+      }
+    }
+    .account-product-description{
+        margin: 0 0 5px;
+        @media screen and (min-width:1280px) {
+          margin: 0 0 get-vw(10px);
+        }
+    }
+  }
+  .account-body .account-list .account-product .account-product-body{
+    @media screen and (max-width:550px) {
+        padding-left: 0px;
+    }
+  }
+}
+
+.type-account_order{
+    .account-body{
+        .account-content--fixedSmall{
+            @media only screen and (max-width:1023px) {
+                width: 100%;
+            }
+            @media only screen and (max-width:550px) {
+                .account-product-figure{
+                        vertical-align: middle;
+                    }
+                .account-product-body{
+                    padding-bottom: 0px;
+                }
+            }
+        }
+        .account-product-title{
+          color:$theme-primary-color;
+          &:hover{
+          }
+        }
+    }
+    .account-sidebar-block{
+        font-size: 15px;
+        color: $heading-color;
+        @media screen and (min-width: 1280px) {
+          font-size: get-vw(30px);
+        }
+        .definitionList-key{
+            color: $heading-color;
+            font-weight: bold;
+        }
+        .order-payments-description{
+            color: $heading-color;
+        }
+    }
+    .account-sidebar{
+        @media only screen and (max-width:767px) {
+            margin-bottom: 20px;
+        }
+    }
+    .account-orderTotal,
+    .account-product-price{
+      font-size: 14px;
+      color: $heading-color;
+      @media screen and (min-width: 1280px) {
+        font-size: get-vw(28px);
+      }
+    }
+    .account-orderTotal{
+        .account-orderTotal-key, .account-orderTotal-value{
+            padding: 15px 0;
+            @media screen and (min-width: 1280px) {
+              padding: get-vw(30px) 0;
+            }
+        }
+        .account-orderTotal-value{
+          &:last-child{
+            font-weight: bold;
+            color: $heading-color;
+          }
+        }
+    }
+}
+
+// ------------------------  Account Message Style ------------------------ //
+.account-message{
+    h5.account-product-title{
+        margin-bottom: 10px;
+        font-size: 18px;
+        @media screen and (min-width: 1280px) {
+            margin-bottom: get-vw(20px);
+            font-size: get-vw(36px);
+        }
+    }
+    .is-read{
+        color: $heading-color;
+        @media only screen and (min-width:550px) {
+          margin: 0;
+        }
+        @media only screen and (max-width:567px) {
+          font-size: 14px;
+          line-height: 24px;
+        }
+    }
+    .account-orderStatus{
+      font-size: 14px;
+      @media screen and (min-width: 1280px) {
+        font-size: get-vw(28px);
+      }
+      @media only screen and (max-width:550px) {
+          margin-bottom: 10px;
+      }
+    }
+}
+
+
+// ------------------------  AddressList Style ------------------------ //
+.addressList{
+  @include display-flex(flex);
+  @include flex-wrap(wrap);
+  margin: 0 -10px;
+  @media screen and (min-width:1280px) {
+    margin: 0 get-vw(-20px);
+  }
+  @media only screen and (max-width:666px) {
+      margin: 0;
+      margin-bottom: 20px;
+  }
+  .address{
+     padding: 0 10px;
+     margin-bottom: 20px;
+     @media screen and (min-width:1280px) {
+      margin-bottom: get-vw(40px);
+      padding:0 get-vw(20px);
+    }
+    @media only screen and (max-width:666px) {
+      padding: 0;
+      width: 100%;
+    }
+    .panel{
+      height: 100%;
+      .panel-body{
+        height: 100%;
+        padding: 25px;
+        background: $gray-bg-color;
+        @media screen and (min-width:1280px) {
+          padding:get-vw(50px);
+        }
+        .form-actions{
+            .button{
+                @media only screen and (max-width:1023px) {
+                  padding: 10px 40px;
+                }
+            }
+        }
+      }
+      &.panel--newAddress{
+        .panel-body{
+            background: #fff;
+        }
+      }
+    }
+
+    .address-details{
+      li,.address-label,.address-description{
+        font-size: 14px;
+        @media screen and (min-width:1280px) {
+          font-size:get-vw(28px);
+        }
+      }
+    }
+  }
+}
+
+// ------------------------  Account Wish list Table Style ------------------------ //
+.wishlists-table{
+  max-width: 100%;
+  .table-thead{
+    th{
+      color:$heading-color;
+      font-size: 15px;
+      @media screen and (min-width:1280px) {
+        font-size: get-vw(30px);
+      }
+    }
+  }
+    .table-actions{
+        .form{
+            margin: 0;
+            max-width: 100%;
+               .button{
+                 @media only screen and (max-width:767px) {
+                    padding: 10px 40px;
+                 }
+                 @media only screen and (max-width:479px) {
+                    padding: 10px 20px;
+                 }
+                @media only screen and (max-width:666px) {
+                    display: block;
+                    width: 100%;
+                    margin: 0;
+                    +.button{
+                        margin-top:5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.type-wishlists{
+  .form-actions input + .button{
+      @media only screen and (max-width:567px) {
+        margin: 0.78571rem 0 0 0;
+      }
+  }
+  .table-tbody{
+    tr{
+      td{
+        &:first-child{
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}
+
+.type-wishlist{
+  .account{
+    .pagination{
+      .pagination-item-mobile{display: none;}
+    }
+    .productGrid{
+      .product{
+        margin-bottom: 0px;
+        position: relative;
+        padding-top: 10px;
+        @media screen and (min-width: 1280px) {
+            padding-top: get-vw(20px);
+        }
+        .card {
+          margin-bottom: 0;
+          .card-figure{
+            @media screen and (max-width: 1279px) {
+                padding-top: 40px;
+            }
+          }
+        }
+        .form{
+          margin-bottom:0;
+          position: absolute;
+          top:10px;
+          left:50%;
+          transform: translateX(-50%); width: 100%; text-align: center;
+          @media screen and (min-width: 1280px) {
+            top: get-vw(20px);
+          }
+          .button{
+            padding:5px 20px; margin: 0px;
+            @media screen and (min-width: 1280px) {
+              padding: get-vw(10px) get-vw(40px);
+            }
+          }
+        }
+      }
+    }
+  }
+  .productGrid{
+    .product{
+      width: 20%;
+      @media screen and (max-width:1279px) {
+        width: 25%;
+      }
+      @media screen and (max-width:1023px) {
+        width: 33.33%;
+      }
+      @media screen and (max-width:666px) {
+        width: 50%;
+      }
+    }
+  }
+}
+
+// ------------------------  Recently viewed Style ------------------------ //
+.type-account_recentitems{
+  .account{
+    margin-bottom:-10px;
+    @media screen and (min-width:1280px) {
+      margin-bottom: get-vw(-20px);
+    }
+    @media screen and (max-width:1023px) {
+      margin-bottom:0px;
+    }
+  }
+  .alertBox.alertBox--info{
+      margin-bottom: 50px;
+      @media screen and (min-width:1280px) {
+          margin-bottom: get-vw(100px);
+      }
+  }
+  .footer{
+    margin-top: 0;
+  }
+  .productGrid{
+    .product{
+      width: 20%;
+      @media screen and (max-width:1279px) {
+        width: 25%;
+      }
+      @media screen and (max-width:1023px) {
+        width: 33.33%;
+      }
+      @media screen and (max-width:666px) {
+        width: 50%;
+      }
+    }
+  }
+}
+
+
+.account-head{
+     .alertBox{
+         @media only screen and (max-width:767px) {
+            padding-left: 2rem;
+            padding-right: 2rem;
+         }
+     }
+}
+
+.account{
+  .pagination{
+    margin-top: 0px;
+  }
+  .form{
+    max-width: 80%;
+    @media screen and (max-width:1023px) {
+      max-width: 100%;
+    }
+  }
+}
+
+.type-add-wishlist{
+    .wishlist-add{
+        .wishlist-form{
+            max-width: 800px;
+            margin-bottom: 0px;
+            @media screen and (min-width:1280px) {
+              max-width: get-vw(1600px);
+            }
+            .form-field{
+                margin-bottom: 15px;
+                padding: 0;
+                @media screen and (min-width:1280px) {
+                  margin-bottom: get-vw(30px);
+                }
+                .form-checkbox + .form-label, .form-radio + .form-label{
+                    font-size: 14px;
+                    line-height: 22px;
+                    padding-left: 20px;
+                    @media screen and (min-width:1280px) {
+                        font-size: get-vw(28px);
+                        line-height: get-vw(44px);
+                        padding-left: get-vw(40px);
+                    }
+                }
+                .form-checkbox + .form-label::before, .form-radio + .form-label::before{
+                    width: 15px;
+                    height: 15px;
+                    @media screen and (min-width:1280px) {
+                      width: get-vw(30px);
+                      height: get-vw(30px);
+                    }
+                }
+                .form-checkbox + .form-label::after, .form-radio + .form-label::after{
+                    height: 13px;
+                    width: 13px;
+                    @media screen and (min-width:1280px) {
+                      width: get-vw(26px);
+                      height: get-vw(26px);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.type-createaccount{
+    .account{
+        .form{
+            .form-actions  .button--with--span{
+                position: relative;
+                input{
+                    right: 0;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.type-account_recentitems{
+    .account{
+        .product{
+            .card-body{
+                .compare-btn{
+                    display: none;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,153 @@
+<nav class="navPages">
+    <div class="navPages-quickSearch">
+        {{> components/common/quick-search name='nav-menu-quick-search'}}
+    </div>
+    <ul class="navPages-list{{#if theme_settings.navigation_design '!==' 'simple'}} navPages-list-depth-max{{/if}} sf-menu mega-menu-list">
+
+        {{#each categories}}
+          {{#if (dashcase name) '==' 'paint-sprayers'}}
+            <li class="navPages-item {{#if is_active '==' true}}ActivePage{{/if}} mega-menu-item {{dashcase name}}">
+                {{#if children}}
+                    <a class="navPages-action needsclick" href="{{url}}">
+                          {{name}}
+                      <i class="icon"><svg><use xlink:href="#icon-menu-arrow-grey"></use></svg></i></a>
+                    {{> components/dh-custom/common/navigation-mega-menu-aoc}}
+                {{else}}
+                    <a class="navPages-action needsclick" href="{{url}}">
+                        {{name}}
+                    </a>
+                {{/if}}
+            </li>
+          {{/if}}
+        {{/each}}
+
+        
+
+        {{#each categories}}
+          {{#if (dashcase name) '==' 'pressure-washers'}}
+            <li class="navPages-item {{#if is_active '==' true}}ActivePage{{/if}} mega-menu-item {{dashcase name}}">
+                {{#if children}}
+                    <a class="navPages-action needsclick" href="{{url}}">
+                      {{name}}
+                    <i class="icon"><svg><use xlink:href="#icon-menu-arrow-grey"></use></svg></i></a>
+                    {{> components/dh-custom/common/navigation-mega-menu-aoc}}
+                {{else}}
+                    <a class="navPages-action needsclick" href="{{url}}">
+                        {{name}}
+                    </a>
+                {{/if}}
+            </li>
+          {{/if}}
+        {{/each}}
+
+        <li class="navPages-item {{#if is_active '==' true}}ActivePage{{/if}} mega-menu-item parts-n-accessories">
+            <a class="navPages-action needsclick" href="{{url}}">Parts & Accessories<i class="icon"><svg><use xlink:href="#icon-menu-arrow-grey"></use></svg></i></a>
+            
+            <ul class="mega-menu-wrap" id="first_wrap">
+                <div class="mega-menu-level-first-wrap custom_level_first_wrap">
+                    <ul class="mega-menu-level-first clearfix custom_mega_menu w-50">
+                    
+                    {{#each categories}}
+                                {{#if (dashcase name) '==' 'paint-sprayers' }}        
+                                
+                                    {{#if children}}
+                                        {{#each children}}
+                                            {{#if children}}
+                                            {{#if name '==' 'Parts & Accessories'}}
+                                            <li  class="category-item category-parent"><a href="{{url}}"><strong>Paint Sprayers <br> {{name}}</strong></a></li>
+                                                {{#each children}}
+                                                    <li class="category-item"><a href="{{url}}">{{name}}</a></li>
+                                                {{/each}}
+                                            {{/if}}
+                                            {{/if}}
+                                        {{/each}}
+                                    {{/if}}
+                                {{/if}}
+                    {{/each}}
+                    </ul>
+                    <ul class="mega-menu-level-first clearfix custom_mega_menu w-50">
+                        {{#each categories}}
+                                    {{#if (dashcase name) '==' 'pressure-washers' }}      
+
+                                        {{#if children}}
+                                            {{#each children}}
+                                                {{#if children}}
+                                                {{#if name '==' 'Parts & Accessories'}}
+                                                <li  class="category-item category-parent"><a href="{{url}}"><strong>Pressure Washers <br> {{name}}</strong></a></li>
+                                                    {{#each children}}
+                                                        <li class="category-item"><a href="{{url}}">{{name}}</a></li>
+                                                    {{/each}}
+                                                {{/if}}
+                                                {{/if}}
+                                            {{/each}}
+                                        {{/if}}
+                                    {{/if}}
+                        {{/each}}
+                        </ul>
+                </div>
+            </ul>
+        </li>
+
+        {{#each categories}}
+            {{#if (dashcase name) '==' 'lawn-landscape-pest-control-equipment'}}
+            <li class="navPages-item {{#if is_active '==' true}}ActivePage{{/if}} mega-menu-item {{dashcase name}}">
+                {{#if children}}
+                    <a class="navPages-action needsclick" href="{{url}}">{{name}}<i class="icon"><svg><use xlink:href="#icon-menu-arrow-grey"></use></svg></i></a>
+                    {{> components/dh-custom/common/navigation-mega-menu}}
+                {{else}}
+                    <a class="navPages-action needsclick" href="{{url}}">
+                        {{name}}
+                    </a>
+                {{/if}}
+            </li>
+            {{/if}}
+        {{/each}}
+
+        
+
+        {{#if shop_by_brand}}
+            <li class="navPages-item mega-menu-item shop_by_brand">
+                <a class="navPages-action needsclick" href="/brands">Brands<i class="icon"><svg><use xlink:href="#icon-menu-arrow-grey"></use></svg></i></a>
+
+
+                <ul class="mega-menu-wrap">
+                    <li class="clearfix">
+                      <div class="mega-menu custom_mega_menu">
+                        <div class="mega-menu-level-first-wrap custom_level_first_wrap">
+                        <div class="heading-section">
+                            <h3 class="page-heading">Brands</h3>
+                        </div>    
+                
+                          <ul class="mega-menu-level-first clearfix custom_mega_menu {{#gt (length children) 6}}slick_menu{{/gt}}">
+                            {{#each (sortBy shop_by_brand "name")}}
+                                {{#if name '==' 'Apollo'}}
+                                <li class="mt-2">
+                                    <a class="navPages-action" href="{{url}}">
+                                        <img class="lazyload" src="{{cdn (concat 'https://store-oskkn9ejod.mybigcommerce.com/content/navigation_img/' (concat  (lowercase (dashcase name)) '.png'))}}"  alt="{{name}}">
+                                        <span>{{name}}</span>
+                                    </a>
+                                </li>
+                                {{else}}
+                                <li>
+                                    <a class="navPages-action" href="{{url}}">
+                                        {{#or (if name '==' 'Summit Hose Reels') (if name '==' 'Steel Eagle')}}
+                                            <img class="lazyload" src="{{cdn 'https://store-oskkn9ejod.mybigcommerce.com/content/navigation_img/titan-products.png'}}"  alt="{{name}}">
+                                        {{else}}
+                                            <img class="lazyload" src="{{cdn (concat 'https://store-oskkn9ejod.mybigcommerce.com/content/navigation_img/' (concat  (lowercase (dashcase name)) '.png'))}}"  alt="{{name}}">
+                                        {{/or}}
+                                        <span>{{name}}</span>
+                                    </a>
+                                </li>
+                                {{/if}}
+        
+                            {{/each}}
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                </ul>
+                
+            </li>
+        {{/if}}
+    </ul>
+</nav>

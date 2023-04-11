@@ -1,0 +1,55 @@
+{{inject 'noCompareMessage' (lang 'compare.no_compare')}}
+
+{{#if category.products}}
+    <div class="filter-wrap">
+        <div class="left-block">
+            {{#if (dashcase category.name)  "==" 'lawn-landscape-pest-control-equipment'}}
+            <h3>Shop Lawn & Garden:</h3>
+            {{else}}
+            <h3>Shop {{category.name}}:</h3>
+            {{/if}}
+        </div>
+        <div class="right-block">
+            {{> components/products/filter sort=pagination.category.sort products_per_page=theme_settings.categorypage_products_per_page}}
+            <div class="compare-btn-filter">
+                <a class="navPages-action navPages-action--compare button" href="{{urls.compare}}" data-compare-nav>{{lang 'common.compare'}}
+                <span class="countPill countPill--positive countPill--alt">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <form action="{{urls.compare}}" method='POST' {{#if settings.data_tag_enabled}} data-list-name="Category: {{category.name}}" {{/if}} data-product-compare>
+        {{#if theme_settings.product_list_display_mode '===' 'grid'}}
+            {{#if settings.data_tag_enabled}}
+                {{> components/trellis/category/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+            {{else}}
+                {{> components/trellis/category/grid products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
+            {{/if}}
+        {{else}}
+            {{#if settings.data_tag_enabled}}
+                {{> components/products/list products=category.products show_compare=category.show_compare theme_settings=theme_settings event="list" }}
+            {{else}}
+                {{> components/products/list products=category.products show_compare=category.show_compare theme_settings=theme_settings}}
+            {{/if}}
+        {{/if}}
+    </form>
+
+    {{#if pagination.category.links}}
+        {{> components/common/paginator pagination.category}}
+    {{/if}}
+{{else}}
+    {{#if category.search_error}}
+        <p>{{lang 'search.errorMessage'}}</p>
+    {{else}}
+        <p data-no-products-notification
+           role="alert"
+           aria-live="assertive"
+           tabindex="-1"
+           class="text-center no-products"
+        >
+            {{lang 'categories.no_products'}}
+        </p>
+    {{/if}}
+{{/if}}

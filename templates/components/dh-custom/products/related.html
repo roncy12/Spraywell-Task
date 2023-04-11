@@ -1,0 +1,11 @@
+<div class="heading-section">
+    <h3 class="page-heading">{{lang 'products.related_products' }}</h3>
+</div>
+
+
+{{#if settings.data_tag_enabled}}
+    {{> components/dh-custom/products/carousel cname=cname columns=theme_settings.productpage_related_products_column_count products=products customArrowClass="f-products" customeId="slider_"  list="Related Products"}}
+{{else}}
+    {{> components/dh-custom/products/carousel cname=cname columns=theme_settings.productpage_related_products_column_count products=products customArrowClass="f-products" customeId="slider_"  }}
+{{/if}}
+

@@ -1,0 +1,43 @@
+{{#partial "hero"}}
+  <div class="category-heading-block webpage-heading-block">
+    <div class="block-wrap">
+        <div class="left-block full-width">
+            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+            <h1 class="page-heading">{{lang 'sitemap.page_title'}}</h1>
+        </div>
+    </div>
+</div>
+{{/partial}}
+
+{{#partial "page"}}
+
+<div class="page-content">
+<ul>
+{{#each sitemap}}
+    <li>
+        <h3>{{label}}</h3>
+        <ul>
+            {{#each body}}
+            <li>
+                <a href="{{url}}">{{label}}</a>
+                {{#if children}}
+                    <ul>
+                    {{#each children}}
+                        {{> components/sitemap/links}}
+                    {{/each}}
+                    </ul>
+                {{/if}}
+            </li>
+            {{/each}}
+            {{#if show_all_link}}
+            <li>
+                <a class="view-all" href="{{subsection_url}}">{{lang 'sitemap.show_all_link'}}</a>
+            </li>
+            {{/if}}
+        </ul>
+    </li>
+{{/each}}
+</ul>
+</div>
+{{/partial}}
+{{> layout/base}}

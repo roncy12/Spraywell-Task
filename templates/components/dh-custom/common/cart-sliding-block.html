@@ -1,0 +1,38 @@
+<div class="cart-sliding-block" id="cart"> 
+    <div class="cart-sliding-block-inn">
+      <div class="loadingOverlay" style="display: none;"></div>
+      <div class="cart-heading">
+        <div class="cart-heading-inn">
+        <h3>Your Cart <span data-dh-cart-tota></span></h3>
+         <span class="cart-slide-close" role="button" aria-label="close" data-cart-mini-close>close <svg class="close-icon"><use xlink:href="#icon-sliding-cart-close"></use></svg></span>
+        </div>
+      </div>      
+      
+      <div class="cart-mini-empty" data-mini-cart-empty></div>
+      
+      <div class="loadingOverlay" data-cart-overlay style="display: none;"></div>
+
+        <div class="cart-product">  
+          <div class="cart-product-wrap">
+            <div class="cart-mini-main products-list">
+              <div class="cart-status-msg">
+                <div class="mini-cart" data-mini-cart-status>
+                    {{> components/cart/status-messages}}
+                </div>
+              </div>
+              <div class="dh-cart-content" data-mini-cart-content>{{> components/cart/custom-content}}</div>              
+            </div>             
+          </div>
+            <!-- {{#if cart.items.length}}
+            {{else}}
+                <h3>{{lang 'cart.checkout.empty_cart'}}</h3>
+            {{/if}} -->
+        </div>
+        <div class="cart-mini-footer payment-area" data-mini-cart-totals >
+            {{> components/cart/custom-total}}
+        </div>      
+              
+    </div>
+  
+  </div>
+  

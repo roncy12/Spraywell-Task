@@ -1,0 +1,9 @@
+
+<ul>
+    {{#each blog.recent_posts}}
+        {{#if @index '<' 3}}
+            {{> components/blog/home-page-post blog=blog.recent_posts columns=3 settings=../settings}}
+        {{/if}}
+    {{/each}}
+</ul>
+  

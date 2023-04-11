@@ -1,0 +1,10 @@
+
+<div class="heading-section">
+    <h3 class="page-heading">{{lang 'products.featured' }}</h3>
+    <a class="button" href="/categories">Shop all products</a>
+</div>
+{{#if settings.data_tag_enabled}}
+    {{> components/dh-custom/products/carousel cname=cname products=products customArrowClass="f-products" list="Featured Products"}}
+{{else}}
+    {{> components/dh-custom/products/carousel cname=cname customArrowClass="f-products" products=products}}
+{{/if}}

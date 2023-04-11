@@ -1,0 +1,102 @@
+<div class="cart mini-cart" data-cart-quantity="{{cart.quantity}}">
+    {{#each cart.items}}
+      <div class="cart-mini-item" data-cid="{{product_id}}">
+            <div class="card-block">
+                <div class="cart-image">
+                    {{#if type '==' 'GiftCertificate'}}
+                    <img class="cart-item-image" src="{{cdn ../../theme_settings.default_image_gift_certificate}}" alt="GiftCertificate" title="GiftCertificate">
+                    {{else}}
+                        {{> components/common/responsive-img
+                            image=image
+                            class="cart-item-image"
+                            fallback_size=../../theme_settings.productthumb_size
+                            lazyload='disabled'
+                            default_image=../../theme_settings.default_image_product
+                        }}
+                    {{/if}}
+                </div>
+                <div class="cart-body">
+                <div class="mini-cart-title-inn">
+                    {{#if brand.name}}
+                    <span class="brand-name">{{brand.name}}</span>
+                    {{/if}}
+                    <h6 class="cart-title">
+                        <a href="{{url}}">{{name}}</a>
+                    </h6>
+                    <div class="remove-btn">
+                        <a class="cart-mini-item-remove" href="javascript:void(0)" aria-label="remove" role="button" data-cart-itemid="{{id}}" data-confirm-delete="Are you sure you want to delete this item?"><i class="icon"><svg><use xlink:href="#icon-close"></use></svg></i></a>
+                    </div>
+                </div>
+
+                <!-- <span class="cart-mini-item-variant">
+                    {{#if options}}
+                        <dl class="definitionList">
+                            {{#each options}}
+                                <dt class="definitionList-key">{{name}}:</dt>
+                                <dd class="definitionList-value">
+                                    {{#if is_file}}
+                                        <a href="/viewfile.php?attributeId={{../id}}&cartitem={{../../id}}">{{value}}</a>
+                                    {{else}}
+                                        {{value}}
+                                    {{/if}}
+                                </dd>
+                            {{/each}}
+                        </dl>
+                    {{/if}}
+                </span> -->
+                <div class="cart-mini-item-quantity">
+                    <div class="form-field--increments">
+                        <div class="form-increment" data-quantity-change>
+                            {{#if can_modify}}
+                            <button class="button button--icon icon--dec" data-sidecart-update data-cart-itemid="{{id}}" data-action="dec">
+                                <span class="is-srOnly">{{lang 'products.quantity_decrease'}}</span>
+                                <i class="icon" aria-hidden="true">
+                                    <svg>
+                                        <use xlink:href="#icon-quantity-minus"/>
+                                    </svg>
+                                </i>
+                            </button>
+                            {{/if}}
+                            <input class="form-input form-input--incrementTotal inputqty"
+                                    id="qtys-{{id}}"
+                                    name="qty-{{id}}"
+                                    type="tel"
+                                    value="{{quantity}}"
+                                    data-quantity-min="{{product.min_purchase_quantity}}"
+                                    data-quantity-max="{{product.max_purchase_quantity}}"
+                                    data-quantity-min-error="{{lang 'products.quantity_min' quantity=min_purchase_quantity}}"
+                                    data-quantity-max-error="{{lang 'products.quantity_max' quantity=max_purchase_quantity}}"
+                                    min="1"
+                                    data-action="manualQtyChange"
+                                    data-cart-itemid="{{id}}"
+                                    pattern="[0-9]*"
+                                    aria-live="polite"{{#unless can_modify}} disabled{{/unless}}>
+                                    {{#if can_modify}}
+                            <button class="button button--icon icon-inc" data-sidecart-update data-cart-itemid="{{id}}" data-action="inc">
+                                <span class="is-srOnly">{{lang 'products.quantity_increase'}}</span>
+                                <i class="icon" aria-hidden="true">
+                                    <svg>
+                                        <use xlink:href="#icon-quantity-plus"/>
+                                    </svg>
+                                </i>
+                            </button>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="cart-mini-item-price money">
+                        {{#or ../customer (if ../theme_settings.restrict_to_login '!==' true)}}
+                            <span class="cart-item-value {{#if price_discounted}}price--discounted{{/if}}">{{price.formatted}}</span>
+                            {{#if price_discounted}}
+                                <span class="cart-item-value">{{price_discounted.formatted}}</span>
+                            {{/if}}
+                        {{else}}
+                            {{> components/common/login-for-pricing}}
+                        {{/or}}
+                    </div>
+                    </div>
+                </div>
+            </div>
+      </div>
+    {{/each}}
+  </div>
+  

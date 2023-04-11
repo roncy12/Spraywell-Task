@@ -1,0 +1,15 @@
+<ul class="productGrid">
+    {{#each products}}
+    <li class="product">
+            {{> components/trellis/category/card 
+                settings=../settings 
+                show_compare=../show_compare 
+                show_rating=../settings.show_product_rating 
+                theme_settings=../theme_settings 
+                customer=../customer 
+                event=../event 
+                hide_product_quick_view=true
+                position=(add @index 1)}}
+    </li>
+    {{/each}}
+</ul>

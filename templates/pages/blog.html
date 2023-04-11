@@ -1,0 +1,46 @@
+---
+blog:
+    posts:
+        limit: 3
+        pages: 3
+        summary: 129
+---
+{{#partial "full-width-page"}}
+
+<div class="category-heading-block">
+    <div class="block-wrap">
+        <div class="left-block">
+            {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+            {{#unless theme_settings.hide_blog_page_heading }}
+                <h1 class="page-heading">EXPERT TIPS & RESOURCES</h1>
+            {{/unless}}
+            <div class="category-description">
+                <p>Our team of experts keeps you up to date on the latest service tips, product information, and industry news.</p>
+            </div>
+        </div>
+        <div class="right-block">
+            <img src="/product_images/uploaded_images/preview-full-blog-image.jpg" alt="">
+        </div>
+    </div>
+</div>
+
+<div class="product-list-wrap">
+    <div class="container">
+        <h3 class="heading-title">Explore Latest Articles</h3>
+        <section class="page">
+            <div class="blog-list-section">
+                <div class="custom-row">
+                    {{#each blog.posts}}
+                        {{> components/dh-custom/blog/post post=this ptitle=this.title purl=this.url show_tags=true}}
+                    {{/each}}
+                </div>
+            </div>
+            {{#if pagination.blog.links}}
+            {{> components/common/paginator pagination.blog}}
+            {{/if}}
+        </section>
+    </div>
+</div>
+
+{{/partial}}
+{{> layout/base}}

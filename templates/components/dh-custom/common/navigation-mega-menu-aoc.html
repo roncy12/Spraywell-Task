@@ -1,0 +1,28 @@
+<ul class="mega-menu-wrap">
+    <li class="clearfix">
+      <div class="mega-menu custom_mega_menu">
+        <div class="mega-menu-level-first-wrap custom_level_first_wrap">
+        <div class="heading-section">
+            <h3 class="page-heading">{{name}}</h3>
+            <a class="button" href="{{url}}">VIEW ALL</a>
+        </div>    
+
+          <ul class="mega-menu-level-first clearfix custom_mega_menu {{#gt (length children) 6}}slick_menu{{/gt}}">
+            {{#each children}}
+              {{#unless name '==' 'Parts & Accessories'}}
+                <li class="{{#if @index '==' '0'}}active{{/if}} category-item">
+                  <a  href="{{url}}"> <img class="lazyload" src="{{cdn (concat 'https://store-oskkn9ejod.mybigcommerce.com/content/navigation_img/' (concat  (lowercase (dashcase name)) '.png'))}}"  alt="{{name}}"></a>
+                  <a  href="{{url}}">{{name}}</a>
+                </li>
+              {{/unless}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ul>
+  
+
+   
+ 
+  

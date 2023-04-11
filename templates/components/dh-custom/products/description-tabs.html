@@ -1,0 +1,43 @@
+{{#if product.description}}
+<div class="toggle-block">
+    <h6 class="toggle-title">Details
+        <div class="toggle-title-icon">
+            <i class="icon add"><svg><use xlink:href="#icon-accordion-plus"></use></svg></i>
+            <i class="icon remove"><svg><use xlink:href="#icon-accordion-minus"></use></svg></i>
+        </div>
+    </h6>
+    <div class="toggle-content">
+        {{{product.description}}}
+    </div>
+</div>
+{{/if}}
+
+{{#if product.warranty}}
+<div class="toggle-block">
+    <h6 class="toggle-title">Specifications
+        <div class="toggle-title-icon">
+            <i class="icon add"><svg><use xlink:href="#icon-accordion-plus"></use></svg></i>
+            <i class="icon remove"><svg><use xlink:href="#icon-accordion-minus"></use></svg></i>
+        </div>
+    </h6>
+    <div class="toggle-content">
+        {{{product.warranty}}}
+    </div>
+</div>
+{{/if}}
+
+{{#if product.videos.list.length}}
+<div class="toggle-block">
+    <h6 class="toggle-title">{{lang 'products.videos.header'}}
+        <div class="toggle-title-icon">
+            <i class="icon add"><svg><use xlink:href="#icon-accordion-plus"></use></svg></i>
+            <i class="icon remove"><svg><use xlink:href="#icon-accordion-minus"></use></svg></i>
+        </div>
+    </h6>
+    <div class="toggle-content" id="videoGallery-content">
+        {{#if product.videos.list.length}}
+            {{> components/dh-custom/products/videos product.videos}}
+        {{/if}}
+    </div>
+</div>
+{{/if}}

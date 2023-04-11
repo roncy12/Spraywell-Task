@@ -1,0 +1,29 @@
+{{inject 'noCompareMessage' (lang 'compare.no_compare')}}
+
+
+
+<div class="filter-wrap">
+    <div class="left-block">
+        <h3>Shop {{brand.name}}:</h3>
+    </div>
+    <div class="right-block">
+        {{> components/products/filter sort=pagination.brand.sort products_per_page=theme_settings.brandpage_products_per_page}}
+        <div class="compare-btn-filter">
+            <a class="navPages-action navPages-action--compare button" href="{{urls.compare}}" data-compare-nav>{{lang 'common.compare'}}
+            <span class="countPill countPill--positive countPill--alt">0</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<form action="{{urls.compare}}" method='POST' {{#if settings.data_tag_enabled}} data-list-name="Brand: {{brand.name}}" {{/if}} data-product-compare>
+    {{#if theme_settings.product_list_display_mode '===' 'grid'}}
+        {{> components/products/grid products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list"}}
+    {{else}}
+        {{> components/products/list products=brand.products show_compare=brand.show_compare theme_settings=theme_settings event="list"}}
+    {{/if}}
+</form>
+
+{{#if pagination.brand.links}}
+    {{> components/common/paginator pagination.brand}}
+{{/if}}

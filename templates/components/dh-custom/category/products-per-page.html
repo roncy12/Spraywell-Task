@@ -1,0 +1,12 @@
+<fieldset class="form-fieldset actionBar-section actionBar-section--productsPerPage m-r-20">
+    <div class="form-field">
+        <label class="form-label" for="limit">Per Page:</label>
+        <select class="form-select category-sort-select" name="limit" id="limit" data-width="100%" data-minimum-results-for-search="Infinity">
+            <option value="20" {{#if products_per_page '==' 20}}selected{{/if}}>20</option>
+            <option value="40" {{#if products_per_page '==' 40}}selected{{/if}}>40</option>
+            <option value="60" {{#if products_per_page '==' 60}}selected{{/if}}>60</option>
+            <option value="80" {{#if products_per_page '==' 80}}selected{{/if}}>80</option>
+            <option value="100" {{#if products_per_page '==' 100}}selected{{/if}}>100</option>
+        </select>
+    </div>
+</fieldset>

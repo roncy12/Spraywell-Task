@@ -1,0 +1,22 @@
+<div class="cart-mini-subtotal">
+    <div class="cart-mini-subtotal-inn">
+        <span class="cart-mini-subtotal-heading">Subtotal</span>
+        <span class="cart-mini-subtotal-value money">
+            {{#or customer (if theme_settings.restrict_to_login '!==' true)}}
+                <span>{{cart.sub_total.formatted}}</span>
+            {{else}}
+                {{> components/common/login-for-pricing}}
+            {{/or}}
+        </span>
+    </div>
+</div>
+<div class="cart-mini-actions">
+    <div class="cart-mini-actions-inn"> 
+        <div class="left-block">
+            <a class="button" href="/cart.php"><span>go to cart</span></a>
+        </div>
+        <div class="right-block">
+            <a class="button button--primary" href="/checkout">checkout now</a>
+        </div>
+    </div>
+</div>

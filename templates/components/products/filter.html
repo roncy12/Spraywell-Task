@@ -1,0 +1,17 @@
+
+
+<div class="action-bar-wrap">
+    <div class="custom-row d-flex">
+        <div class="column products-per-page-block">
+            <form class="actionBar" method="get" data-sort-by>
+                {{> components/dh-custom/category/products-per-page products_per_page=products_per_page}}            
+            </form> 
+        </div>
+        <div class="column">
+            <form class="actionBar" method="get" data-sort-by="product">
+                {{> components/category/sort-box sort=sort}}
+            </form>           
+        </div>
+    </div>
+</div>
+

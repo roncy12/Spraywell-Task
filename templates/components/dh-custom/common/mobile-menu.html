@@ -1,0 +1,128 @@
+<div class="mobile-menu-block">
+    <div class="container">
+      <div class="mobile-menu-block-inn">
+        <ul class="navPages-list-custom navList-treeview">
+           {{!-- {{#each categories}}
+          {{#if (dashcase name) '==' 'paint-equipment'}}
+
+            <li class="navPages-item {{#if is_active '==' true}}ActivePage{{/if}} mega-menu-item {{dashcase name}}">
+                {{> components/dh-custom/common/navigation-list}}
+
+            </li>
+          {{/if}}
+        {{/each}} --}}
+
+
+        {{#each categories}}
+        {{#if (dashcase name) '==' 'paint-sprayers'}}
+          <li class="navPages-item {{#if is_active '==' true}}ActivePage{{/if}} mega-menu-item {{dashcase name}}">
+              {{#if children}}
+                  <a class="navPages-action needsclick" href="{{url}}">
+                        {{name}}
+                    <i class="icon"><svg><use xlink:href="#icon-menu-arrow-grey"></use></svg></i></a>
+                    {{> components/dh-custom/common/navigation-list}}
+              {{else}}
+                  <a class="navPages-action needsclick" href="{{url}}">
+                      {{name}}
+                  </a>
+              {{/if}}
+          </li>
+        {{/if}}
+      {{/each}}
+
+      {{#each categories}}
+        {{#if (dashcase name) '==' 'pressure-washers'}}
+          <li class="navPages-item {{#if is_active '==' true}}ActivePage{{/if}} mega-menu-item {{dashcase name}}">
+              {{#if children}}
+                  <a class="navPages-action needsclick" href="{{url}}">
+                        {{name}}
+                    <i class="icon"><svg><use xlink:href="#icon-menu-arrow-grey"></use></svg></i></a>
+                    {{> components/dh-custom/common/navigation-list}}
+              {{else}}
+                  <a class="navPages-action needsclick" href="{{url}}">
+                      {{name}}
+                  </a>
+              {{/if}}
+          </li>
+        {{/if}}
+      {{/each}}
+
+        {{!--{{#each categories}}
+          {{#if (dashcase name) '==' 'cleaning-equipment'}}
+          {{#each categories}}
+          {{#if (dashcase name) '==' 'pressure-washers'}}
+            <li class="navPages-item {{#if is_active '==' true}}ActivePage{{/if}} mega-menu-item {{dashcase name}}">
+               {{> components/dh-custom/common/navigation-list}}
+
+            </li>
+          {{/if}}
+        {{/each}}--}}
+
+        {{#each categories}}
+            {{#if (dashcase name) '==' 'lawn-landscape-pest-control-equipment'}}
+            <li class="navPages-item {{#if is_active '==' true}}ActivePage{{/if}} mega-menu-item {{dashcase name}}">
+                {{> components/dh-custom/common/navigation-list}}
+            </li>
+            {{/if}}
+        {{/each}}
+
+        <li class="navPages-item {{#if is_active '==' true}}ActivePage{{/if}} mega-menu-item shop-n-accessories">
+            <a class="navPages-action needsclick" href="#">Shop & Accessories<i class="icon"><svg><use xlink:href="#icon-menu-arrow-grey"></use></svg></i></a>
+            
+            {{#each categories}}
+                {{#if (dashcase name) '==' 'paint-sprayers'}}
+                    {{> components/dh-custom/common/navigation-list-aoc}}
+                {{/if}}
+            {{/each}}
+            {{#each categories}}
+                {{#if (dashcase name) '==' 'pressure-washers'}}
+                    {{> components/dh-custom/common/navigation-list-aoc}}
+                {{/if}}
+            {{/each}}
+         </li>
+
+
+        {{#if shop_by_brand}}
+            <li class="navPages-item">
+                <a class="navPages-action needsclick" href="/brands">Brands</a>
+                <ul class="navlist-sub nav-second-level">
+                    {{#each (sortBy shop_by_brand "name")}}
+                        <li>
+                            <a class="navPages-action" href="{{url}}">{{name}}</a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </li>
+        {{/if}}
+        </ul>
+        <ul class="navPages-list-custom navList-treeview navPages-list-custom-account">
+          <li class="navPages-item navUser-item--account">
+              <a class="navUser-action" href="{{urls.account.index}}" aria-label="{{lang 'common.account'}}">
+                  <span>
+                      <svg><use xlink:href="#icon-header-account" /></svg>
+                  </span>
+                  My Account
+              </a>
+          </li>
+          <!-- <li class="navPages-item">
+              <a class="navUser-action" data-reamaze-lightbox="default" href="#">
+                  <span>
+                      <svg><use xlink:href="#icon-header-chat" /></svg>
+                  </span>
+                  Chat
+              </a>
+          </li> -->
+          {{#if settings.show_wishlist}}
+              <li class="navPages-item navUser-item-wishlist">
+                  <a class="navUser-action needsclick" href="{{urls.account.wishlists.all}}">
+                    <span>
+                        <svg><use xlink:href="#icon-wishlist-heart-nocolor" /></svg>
+                    </span>
+                      Wishlist
+                  </a>
+              </li>
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+  </div>

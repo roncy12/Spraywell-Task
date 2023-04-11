@@ -1,0 +1,86 @@
+<article class="blog">
+    <div class="blog-post-figure">
+        {{#if post.thumbnail}}
+            <figure class="blog-thumbnail">
+                <a href="{{post.url}}">
+                    {{> components/common/responsive-img
+                        image=post.thumbnail
+                        fallback_size=theme_settings.blog_size
+                        lazyload=theme_settings.lazyload_mode
+                    }}
+                </a>
+            </figure>
+        {{/if}}
+    </div>
+
+    <div class="blog-post-body">
+        <header class="blog-header">
+            <h2 class="blog-title">
+                <a href="{{post.url}}">{{post.title}}</a>
+            </h2>
+            <p class="blog-date">
+                <strong>
+                    {{#each (split post.date_published ' ')  }}
+                        {{#if @index '==' '0'}}
+                            {{#if (toLowerCase this) '==' 'jan'}}01/
+                                {{else if (toLowerCase this) '==' 'feb'}}02/
+                                {{else if (toLowerCase this) '==' 'mar'}}03/
+                                {{else if (toLowerCase this) '==' 'apr'}}04/
+                                {{else if (toLowerCase this) '==' 'may'}}05/
+                                {{else if (toLowerCase this) '==' 'jun'}}06/
+                                {{else if (toLowerCase this) '==' 'jul'}}07/
+                                {{else if (toLowerCase this) '==' 'aug'}}08/
+                                {{else if (toLowerCase this) '==' 'sep'}}09/
+                                {{else if (toLowerCase this) '==' 'oct'}}10/
+                                {{else if (toLowerCase this) '==' 'nov'}}11/
+                                {{else if (toLowerCase this) '==' 'dec'}}12/
+                            {{/if}}
+                        {{/if}}{{#if @index '==' '1'}}
+                            {{toInt this}}/
+                        {{/if}}
+                        {{#if @index '==' '2'}}
+                            {{this}}
+                        {{/if}}
+                    {{/each}}
+                </strong>
+                {{#if post.author}}by <strong>{{lang 'blog.posted_by' name=post.author}}</strong>{{/if}}
+            </p>
+            
+        </header>
+
+        <div class="blog-post">
+            {{#if post.body}}
+                {{{post.body}}}
+            {{else}}
+                {{{post.summary}}}
+                {{#if post.show_read_more}}
+                    &hellip; <a href="{{url}}" aria-label="{{post.title}} {{lang 'blog.read_more'}}">{{lang 'blog.read_more'}}</a>
+                {{/if}}
+            {{/if}}
+        </div>
+
+        <div class="tags-block-wrap">
+            <div class="left-block">
+                {{#if show_tags}}
+                    {{#if post.tags}}
+                        <ul class="tags">
+                            {{#each post.tags}}
+                            <li class="tag">
+                                <a class="tab-block" href="{{url}}">{{name}}</a>
+                            </li>
+                            {{/each}}
+                        </ul>
+                    {{/if}}
+                {{/if}}
+            </div>
+            <div class="right-block">
+                {{>components/dh-custom/common/share url=post.url}}
+            </div>
+        </div>
+
+        
+
+        
+
+    </div>
+</article>

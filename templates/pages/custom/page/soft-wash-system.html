@@ -1,0 +1,83 @@
+
+
+
+{{#partial "full-width-page"}}
+
+<section class="page soft-wash-systems-template">
+
+    <div class="soft-wash-systems-banner">
+        {{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+        {{{region name="soft-wash-systems-banner"}}}
+    </div>
+
+    <div class="about-soft-wash-system" >
+        <div class="container">
+            {{{region name="about-soft-wash-system"}}}
+        </div>
+    </div>
+
+    <div class="soft-wash-system" id="soft-wash-systems">
+        <div class="container">
+            {{{region name="soft-wash-system"}}}
+        </div>
+    </div>
+
+    <div class="soft-wash-chemicals" id="soft-wash-chemicals">
+        <div class="container">
+            {{{region name="soft-wash-chemicals"}}}
+        </div>
+    </div>
+
+    <div class="soft-wash-chemicals-overview" id="soft-wash-chemicals-overview">
+        <div class="container">
+            {{{region name="soft-wash-chemicals-overview"}}}
+        </div>
+    </div>
+
+    <div class="battery-charger" id="battery-charger">
+        <div class="container">
+            {{{region name="battery-charger"}}}
+        </div>
+    </div>
+
+    <div class="recommended-tip-sizes" id="recommended-tip-sizes">
+        <div class="container">
+            {{{region name="recommended-tip-sizes"}}}
+        </div>
+    </div>
+
+    <div class="soft-wash-accessories" id="soft-wash-accessories">
+        <div class="container">
+            {{{region name="soft-wash-accessories"}}}
+        </div>
+    </div>
+
+    <div class="maintenance" id="maintenance">
+        <div class="container">
+            {{{region name="maintenance"}}}
+        </div>
+    </div>
+
+    <div class="soft-wash-bottom">
+        <div class="container">
+            {{{region name="soft-wash-bottom"}}}
+        </div>
+    </div>
+<div class="container">
+        {{{region name="page_builder_content"}}}
+</div>
+  <div class="page-content page-content--centered">
+      <div class="container">
+        {{#replace '%%Syndicate%%' page.content}}
+            {{> components/page/rss_feed}}
+        {{else}}
+            {{{page.content}}}
+        {{/replace}}
+    </div>
+  </div>
+
+</section>
+
+{{/partial}}
+
+{{> layout/base}}

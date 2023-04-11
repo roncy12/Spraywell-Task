@@ -1,0 +1,8 @@
+<div class="heading-section">
+    <h3 class="page-heading">{{lang 'products.similar_by_views'}}</h3>
+</div>
+{{#if settings.data_tag_enabled}}
+    {{> components/dh-custom/products/carousel cname=cname products=products customArrowClass="f-products" customeId="slider_" list="Customers Also Viewed"}}
+{{else}}
+    {{> components/dh-custom/products/carousel cname=cname products=products customArrowClass="f-products" customeId="slider_" list="Customers Also Viewed"}}
+{{/if}}

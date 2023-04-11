@@ -1,0 +1,30 @@
+{{#if category}}
+<div class="sub-category-block" hidden>
+    <div class="container">
+            {{#if category.subcategories}}
+            <div class="sub-category-wrap">
+                <ul class="custom-row d-flex flex-wrap-w">
+                    {{#each category.subcategories}}
+                    <li class="column">
+                        <div class="categories-item">
+                                <a href="{{url}}" alt="{{name}}" title="{{name}}">
+                                    <div class="image-block {{#if image}}show-image{{else}}no-img{{/if}}">
+                                        {{#if image}}
+                                            <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{getImage image 'sub-category-img'}}" alt="" />
+                                        {{else}}
+                                            <img class="lazyload" data-sizes="auto" src="{{cdn 'img/loading.svg'}}" data-src="{{cdn 'img/category-no-img.jpg'}}" alt="" />    
+                                        {{/if}}
+                                    </div>
+                                    <div class="text-block">
+                                        <h2 class="link-with-arrow">{{name}}</h2>
+                                    </div>
+                                </a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            {{/if}}
+    </div>
+</div>
+{{/if}}

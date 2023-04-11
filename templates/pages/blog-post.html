@@ -1,0 +1,27 @@
+{{#partial "full-width-page"}}
+
+{{> components/common/breadcrumbs breadcrumbs=breadcrumbs}}
+<div class="blog-post-wrap">
+    <div class="container">
+        {{> components/blog/post post=blog.post show_tags=true}}
+    </div>
+</div>
+
+<div class="product-list-wrap">
+    <div class="container">
+        <div class="heading-block">
+            <h3 class="heading-title">Related Posts</h3>
+        </div>
+        <div class="custom-blog-list-wrap blog-list-section">
+            <div class="loadingOverlay" style="display: none;list-style: none;"></div>
+            <div class="custom-blog-list custom-row">
+
+            </div>
+            <button class="slick-next slick-arrow blog-next" aria-label="Next" type="button"><svg><use xlink:href="#icon-slide-arrow-right"></use></svg></button>
+            <button class="slick-prev slick-arrow blog-prev" aria-label="Previous" type="button"><svg><use xlink:href="#icon-slide-arrow-left"></use></svg></button>
+
+        </div>
+    </div>
+  </div>
+{{/partial}}
+{{> layout/base}}

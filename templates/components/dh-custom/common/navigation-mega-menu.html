@@ -1,0 +1,62 @@
+<ul class="mega-menu-wrap">
+    <li class="clearfix">
+      <div class="mega-menu">
+        <div class="mega-menu-level-first-wrap">
+          <ul class="mega-menu-level-first clearfix">
+            {{#each children}}
+            <li class="{{#if @index '==' '0'}}active{{/if}} category-item">
+              {{#if children}}
+              <a class="needsclick" href="{{url}}">{{name}} 
+                  <svg><use xlink:href="#icon-slide-arrow-right"></use></svg>
+                </a>
+              <ul class="mega-menu-second-wrap">
+                <div class="mega-menu-second-wrap-inner">
+                  {{#each children}}
+                  <div class="mega-menu-second-item">
+                    {{#if children}}
+                      {{#each children}}
+                          <p class="{{#if @last}}last-child{{/if}}">
+                              <a href="{{url}}">{{name}}</a>
+                          </p>
+                      {{/each}}
+                      {{#if children}}
+                          {{#each children}}
+                              <p class="{{#if @last}}last-child{{/if}}">
+                                  <a href="{{url}}">{{name}}</a>
+                              </p>
+                          {{/each}}
+                      {{/if}}
+                    {{else}}
+                    <p class="cat-heading"><a href="{{url}}">{{name}}</a></p>
+                    {{/if}}
+                  </div>
+                  {{/each}}
+                </div>
+              </ul>
+              {{else}}
+              <a  href="{{url}}">{{name}}</a>
+              {{/if}}
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+        {{#if image}}
+            <div class="category-image">
+                <div class="category-img-block">
+                    <img src="{{getImage image "thumbnail"}}">
+                </div>
+                {{#if (dashcase name)  "==" 'lawn-landscape-pest-control-equipment'}}
+                <a class="button" href="{{url}}">SHOP ALL LAWN & GARDEN</a>
+                {{else}}
+                <a class="button" href="{{url}}">SHOP ALL {{name}}</a>
+                {{/if}}                
+            </div>
+        {{/if}}
+    </li>
+  </ul>
+  
+
+   
+ 
+  

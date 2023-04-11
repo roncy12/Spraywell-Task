@@ -1,0 +1,85 @@
+{{#if post.title '!=' 'tags-dummy'}}
+<div class="blog" data-blog-title="{{post.title}}">
+    <div class="blog-inn">
+        <div class="blog-post-figure">
+            {{#if post.thumbnail}}
+                <figure class="blog-thumbnail">
+                    <a href="{{post.url}}">
+                        {{> components/common/responsive-img
+                            image=post.thumbnail
+                            fallback_size=theme_settings.blog_size
+                            lazyload=theme_settings.lazyload_mode
+                        }}
+                    </a>
+                </figure>
+            {{else}}
+                <figure class="blog-thumbnail">
+                    <img class="no-img" src="/product_images/uploaded_images/blog-no-img.jpg" alt="no image">
+                </figure> 
+            {{/if}}
+            {{#if show_tags}}
+                {{#if post.tags}}
+                    {{#each post.tags}}
+                        {{#if @index "==" 0}}
+                            <a class="tab-block" href="{{url}}">{{name}}</a>
+                        {{/if}}    
+                    {{/each}}
+                {{/if}}
+            {{/if}}
+        </div>
+    
+        <div class="blog-post-body">
+            <div class="blog-post-body-inn">
+                <header class="blog-header">
+                    <div class="blog-title-heaidng">
+                        <h2 class="blog-title">
+                            <a href="{{post.url}}">{{post.title}}</a>
+                        </h2>
+                        <p>
+                            {{#each (split post.date_published ' ')  }}
+                                {{#if @index '==' '0'}}
+                                    {{#if (toLowerCase this) '==' 'jan'}}01/
+                                        {{else if (toLowerCase this) '==' 'feb'}}02/
+                                        {{else if (toLowerCase this) '==' 'mar'}}03/
+                                        {{else if (toLowerCase this) '==' 'apr'}}04/
+                                        {{else if (toLowerCase this) '==' 'may'}}05/
+                                        {{else if (toLowerCase this) '==' 'jun'}}06/
+                                        {{else if (toLowerCase this) '==' 'jul'}}07/
+                                        {{else if (toLowerCase this) '==' 'aug'}}08/
+                                        {{else if (toLowerCase this) '==' 'sep'}}09/
+                                        {{else if (toLowerCase this) '==' 'oct'}}10/
+                                        {{else if (toLowerCase this) '==' 'nov'}}11/
+                                        {{else if (toLowerCase this) '==' 'dec'}}12/
+                                    {{/if}}
+                                {{/if}}{{#if @index '==' '1'}}
+                                    {{toInt this}}/
+                                {{/if}}
+                                {{#if @index '==' '2'}}
+                                    {{this}}
+                                {{/if}}
+                            {{/each}}
+                        </p>
+                    </div>
+                    
+                    <p class="blog-date">{{#if post.author}}by <strong>{{lang 'blog.posted_by' name=post.author}}</strong>{{/if}}</p>
+                </header>
+        
+                <div class="blog-post">
+                    {{#if post.body}}
+                        {{{post.body}}}
+                    {{else}}
+                        {{{post.summary}}}&hellip;
+                    {{/if}}
+                </div>
+            </div>
+            <div class="read-more-btn">
+                {{#if post.show_read_more}}
+                    <a href="{{url}}" aria-label="{{post.title}} {{lang 'blog.read_more'}}">{{lang 'blog.read_more'}} <i class="icon"><svg><use xlink:href="#icon-arrow-right"></use></svg></i></a>
+                {{/if}}
+            </div>
+            {{>components/common/share}}
+    
+        </div>
+    </div>
+</div>
+{{/if}}

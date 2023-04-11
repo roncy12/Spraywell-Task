@@ -1,0 +1,106 @@
+{{assignVar "carousel_custom_arrow_id" (incrementVar "carousel_custom_arrow_id")}}
+<section class="productCarousel"
+    data-list-name="{{list}}"
+    data-slick='{
+        "dots": false,
+        "infinite": true,
+        "mobileFirst": true,
+        "slidesToShow": 5,
+        "slidesToScroll": 1,
+        "slide": ".js-product-slide",
+        "arrow": "{{#if (length products) ">" 4}}true{{else}}false{{/if}}",
+        "prevArrow": "{{#if customeId}}#{{customeId}}{{getVar "carousel_custom_arrow_id"}}_p{{/if}}.js-product-prev-arrow",
+        "nextArrow": "{{#if customeId}}#{{customeId}}{{getVar "carousel_custom_arrow_id"}}_n{{/if}}.js-product-next-arrow",
+        "responsive": [
+            {
+                "breakpoint": 1440,
+                "settings": {
+                    "slidesToShow": 5,
+                    "slidesToScroll": 1
+                }
+            },
+            {
+                "breakpoint": 1220,
+                "settings": {
+                    "slidesToShow": 5,
+                    "slidesToScroll": 1
+                }
+            },
+            {
+                "breakpoint": 1023,
+                "settings": {
+                    "slidesToShow": 3,
+                    "slidesToScroll": 1,
+                    "centerMode": true,
+                    "centerPadding": "110px",
+                    "infinite": true
+                }
+            },
+            {
+                "breakpoint": 767,
+                "settings": {
+                    "slidesToShow": 2,
+                    "slidesToScroll": 1,
+                    "arrows": true,
+                    "centerMode": true,
+                    "centerPadding": "110px",
+                    "infinite": true
+                }
+            },
+            {
+                "breakpoint": 666,
+                "settings": {
+                    "slidesToShow": 2,
+                    "slidesToScroll": 1,
+                    "arrows": true,
+                    "centerMode": true,
+                    "centerPadding": "74px",
+                    "infinite": true
+                }
+            },
+            {
+                "breakpoint": 567,
+                "settings": {
+                    "slidesToShow": 1,
+                    "slidesToScroll": 1,
+                    "dots": false,
+                    "arrows": true,
+                    "centerMode": true,
+                    "centerPadding": "74px",
+                    "infinite": true
+                }
+            },
+            {
+                "breakpoint": 300,
+                "settings": {
+                    "slidesToShow": 1,
+                    "slidesToScroll": 1,
+                    "dots": false,
+                    "arrows": true,
+                    "centerMode": true,
+                    "centerPadding": "74px",
+                    "infinite": true
+                }
+            }
+        ]
+    }'
+>
+    {{#if products.length '>' 1}}
+       <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{products.length}}" id="{{customeId}}{{getVar 'carousel_custom_arrow_id'}}_p" class="{{#if customArrowClass}}{{customArrowClass}} {{/if}}js-product-prev-arrow slick-prev slick-arrow {{#if (length products) '>' 5}}true{{else}}false{{/if}}"><svg><use xlink:href="#icon-slide-arrow-left"></use></svg></button>
+    {{/if}}
+
+    {{#each products}}
+    <div data-product-slide  class="productCarousel-slide js-product-slide">
+        {{> components/products/card settings=../settings theme_settings=../theme_settings customer=../customer event="list" position=(add @index 1)}}
+    </div>
+    {{/each}}
+
+    {{#if products.length '>' 1}}
+        {{!> components/carousel-content-announcement}}
+    {{/if}}
+    
+    {{#if products.length '>' 1}}
+        <button aria-label="{{lang 'carousel.arrowAriaLabel'}} {{products.length}}" id="{{customeId}}{{getVar 'carousel_custom_arrow_id'}}_n" class="{{#if customArrowClass}}{{customArrowClass}} {{/if}}js-product-next-arrow slick-next slick-arrow {{#if (length products) '>' 5}}true{{else}}false{{/if}}"><svg><use xlink:href="#icon-slide-arrow-right"></use></svg></button>
+    {{/if}}
+
+</section>

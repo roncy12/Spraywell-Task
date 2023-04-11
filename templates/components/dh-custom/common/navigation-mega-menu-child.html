@@ -1,0 +1,49 @@
+<ul class="mega-menu-wrap">
+    <li class="clearfix">
+      <div class="mega-menu">
+        <div class="mega-menu-level-first-wrap">
+          <ul class="mega-menu-level-first clearfix">
+            {{#each children}}
+
+                {{#if children}}
+                {{#if name '==' 'Parts & Accessories'}}
+
+                <li class="{{#if @last}}active{{/if}} category-item">
+                    <ul class="mega-menu-second-wrap">
+                    <a class="navPages-action needsclick" href="{{url}}"> {{name}} </a>
+
+                      <div class="mega-menu-second-wrap-inner">
+                        
+                        {{#each children}}
+                          <div class="mega-menu-second-item">
+                            {{#if children}}
+                              {{#each children}}
+                                <p class="{{#if @last}}last-child{{/if}}">
+                                  <a href="{{url}}">{{name}}</a>
+                                </p>
+                              {{/each}}
+                              {{#if children}}
+                                {{#each children}}
+                                  <p class="{{#if @last}}last-child{{/if}}">
+                                    <a href="{{url}}">{{name}}</a>
+                                  </p>
+                                {{/each}}
+                              {{/if}}
+                            {{else}}
+                              <p class="cat-heading">
+                                <a href="{{url}}">{{name}}</a>
+                              </p>
+                            {{/if}}
+                          </div>
+                        {{/each}}
+                      </div>
+                    </ul>
+                {{/if}}
+                  </li>
+              {{/if}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ul>

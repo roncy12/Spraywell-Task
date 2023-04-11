@@ -1,0 +1,88 @@
+<nav class="navUser-custom">
+    <ul class="navUser-section navUser-section--alt sf-menu">
+        <li class="navUser-item navUser-item-quickSearch">
+            <button class="navUser-action navUser-action--quickSearch"
+               type="button"
+               id="quick-search-expand"
+               data-search="quickSearch"
+               aria-controls="quickSearch"
+               aria-label="{{lang 'common.search'}}"
+            >
+                <!-- {{lang 'common.search'}} -->
+                <span>
+                    <svg class="icon-search"><use xlink:href="#icon-search" /></svg>
+                    <svg class="icon-close"><use xlink:href="#icon-close" /></svg>
+                </span>
+            </button>
+        </li>
+        <!-- <li class="navUser-item">
+            <a class="navUser-action" data-reamaze-lightbox="default" href="#">
+                <span>
+                    <svg><use xlink:href="#icon-header-chat" /></svg>
+                </span>
+            </a>
+        </li> -->
+        <li class="navUser-item navUser-item--account">
+            <a class="navUser-action" href="{{urls.account.index}}" aria-label="{{lang 'common.account'}}">
+                <span>
+                    <svg><use xlink:href="#icon-header-account" /></svg>
+                </span>
+            </a>
+            <ul>
+
+                <li>
+                    <a class="navUser-action" href="{{urls.account.index}}">My Account</a>
+                </li>
+                <li>
+                    <a class="navUser-action" href="/account.php?action=order_status">Orders</a>
+                </li>
+                <!-- {{#if settings.gift_certificates_enabled}}
+                    <li class="navUser-item">
+                        <a class="navUser-action" href="{{urls.gift_certificate.purchase}}">
+                        <i class="icon-gift"></i><span>{{lang 'common.gift_cert'}}</span>
+                        </a>
+                    </li>
+                {{/if}} -->
+
+                {{#if settings.show_wishlist}}
+                    <li class="navUser-item navUser-item-wishlist">
+                        <a class="navUser-action needsclick" href="{{urls.account.wishlists.all}}">
+                            Wishlist
+                        </a>
+                    </li>
+                {{/if}}
+                {{#if customer}}
+                  <li class="navUser-item">
+                      <a class="navUser-action" href="{{urls.auth.logout}}">{{lang 'common.logout'}}</a>
+                  </li>
+                {{/if}}
+
+              </ul>
+
+        </li>
+        <li class="navUser-item navUser-item--cart">
+            <!-- <a class="navUser-action navUser-item--cart"
+               data-cart-preview
+               data-dropdown="cart-preview-dropdown"
+               data-options="align:right"
+               href="{{urls.cart}}"
+               aria-label="{{lang 'cart.nav_aria_label'}}"
+            >
+                <span class="navUser-item-cartLabel"><svg><use xlink:href="#icon-header-cart" /></svg></span>
+                <span class="countPill cart-quantity"></span>
+            </a> -->
+            <a class="navUser-action navUser-item--cart" data-options="align:right" href="javascript:void(0)" >
+                <span class="navUser-item-cartLabel"><svg><use xlink:href="#icon-header-cart" /></svg></span>
+                <span class="countPill cart-quantity"></span>
+            </a>
+
+            <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content aria-hidden="true"></div>
+
+        </li>
+        <li class="navUser-item navUser-item-mobile-menu">
+            <a class="control-otherlinks">
+                <span class="mobileMenu-toggleIcon"></span>
+            </a>
+          </li>
+    </ul>
+</nav>
